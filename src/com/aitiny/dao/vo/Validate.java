@@ -1,6 +1,7 @@
 package com.aitiny.dao.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Validate implements Serializable {
 	private Integer id;
@@ -9,6 +10,14 @@ public class Validate implements Serializable {
 	private String message;
 	private Integer uid;
 	private Integer aid;
+	private Date time;
+	
+	public Date getTime() {
+		return time;
+	}
+	public void setTime(Date time) {
+		this.time = time;
+	}
 	public Integer getAid() {
 		return aid;
 	}

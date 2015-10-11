@@ -7,6 +7,15 @@ public class Top implements Serializable {
 	private Integer id;
 	private Integer pid;
 	private Date time;
+	public Top() {
+		// TODO Auto-generated constructor stub
+	}
+	public Top(Integer id, Integer pid, Date time) {
+		super();
+		this.id = id;
+		this.pid = pid;
+		this.time = time;
+	}
 	@Override
 	public String toString() {
 		return "Top [id=" + id + ", pid=" + pid + ", time=" + time + "]";

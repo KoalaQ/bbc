@@ -19,7 +19,7 @@ public interface IDAO<K,V> {
 	 */
 	public boolean doCreate(V vo) throws Exception;
 	/**
-	 * 修改操作，
+	 * 修改操作，参数全更新
 	 * @param vo 传入的对象修改，vo中id进行确定
 	 * @return  插入成功返回true，否则返回false
 	 * @throws Exception
@@ -42,25 +42,25 @@ public interface IDAO<K,V> {
 	 * @return  修改成功返回true，否则返回false
 	 * @throws Exception
 	 */
-	public boolean doUpdate(K id,String Column,String value)throws Exception;
-	/**
-	 * 修改对应id的相应Column的值，参数类型固定
-	 * @param id  要修改的id
-	 * @param Column  要修改的Column
-	 * @param value   传入的参数，Integer类型
-	 * @return  修改成功返回true，否则返回false
-	 * @throws Exception
-	 */
-	public boolean doUpdate(K id,String Column,Integer value)throws Exception;
-	/**
-	 * 修改对应id的相应Column的值，参数类型固定
-	 * @param id  要修改的id
-	 * @param Column  要修改的Column
-	 * @param value   传入的参数，Date类型
-	 * @return  修改成功返回true，否则返回false
-	 * @throws Exception
-	 */
-	public boolean doUpdate(K id,String Column,Date value)throws Exception;
+//	public boolean doUpdate(K id,String Column,String value)throws Exception;
+//	/**
+//	 * 修改对应id的相应Column的值，参数类型固定
+//	 * @param id  要修改的id
+//	 * @param Column  要修改的Column
+//	 * @param value   传入的参数，Integer类型
+//	 * @return  修改成功返回true，否则返回false
+//	 * @throws Exception
+//	 */
+//	public boolean doUpdate(K id,String Column,Integer value)throws Exception;
+//	/**
+//	 * 修改对应id的相应Column的值，参数类型固定
+//	 * @param id  要修改的id
+//	 * @param Column  要修改的Column
+//	 * @param value   传入的参数，Date类型
+//	 * @return  修改成功返回true，否则返回false
+//	 * @throws Exception
+//	 */
+//	public boolean doUpdate(K id,String Column,Date value)throws Exception;
 	/**
 	 * 通过id删除
 	 * @param id 要删除的id
@@ -92,13 +92,25 @@ public interface IDAO<K,V> {
 	 */
 	public List<V> findAll(String column,String keyWord,Integer currentPage,Integer lineSize)throws Exception;
 	/**
+	 * 分页模糊查询表中的全部数据，有排序参数
+	 * @param column 要模糊查询的数据类
+	 * @param keyWord 要模糊查询的关键字，如果关键为null（isEmpty()==true）,则查询全部数据
+	 * @param currentPage  当前所在页
+	 * @param lineSize  每页显示的数据行数
+	 * @param orderColumn  排序的列
+	 * @param orderType  排序类型，0升序，1降序
+	 * @return 如果没有数据返回的List为空（size()==0）,如果有数据将会以List的形式返回
+	 * @throws Exception
+	 */
+	public List<V> findAll(String column,String keyWord,Integer currentPage,Integer lineSize,String orderColumn,Integer orderType)throws Exception;
+	/**
 	 *  统计数据表之中的数据量
 	 * @param column 模糊查询的列
 	 * @param keyWord 模糊查询的关键字
 	 * @return 如果有数据将会以，则会返回COUNT（）函数的统计结果，如果没有数据返回的0,
 	 * @throws Exception
 	 */
-	public List<V> getAllCount(String column,String keyWord)throws Exception;
+	public Integer getAllCount(String column,String keyWord)throws Exception;
 	
 }
 
