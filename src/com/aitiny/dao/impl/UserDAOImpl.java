@@ -38,7 +38,7 @@ public class UserDAOImpl  extends ADAO<Integer,User> implements IUserDAO{
 //			String sql="INSERT INTO user(email,password,nickName,photoPath,available,vantages,viewcount,postcount,grade,fanscount,concerncount,theme,regtime) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 //			Object[] params=BeanToObjectUtil.getFiledValues(vo);
 			String sql="INSERT INTO user(email,password,nickName,regtime) VALUES(?,?,?,?)";
-			Object[] params=new Object[]{vo.getEmail(),Encode.getEncode("MD5", vo.getPassword()),vo.getNickName(),new Date()};
+			Object[] params=new Object[]{vo.getEmail(),Encode.getEncode(Encode.MD5, vo.getPassword()),vo.getNickName(),new Date()};
 			if(jdbcTemplate.update(sql, params)>0){
 				return true;
 			}
@@ -62,7 +62,7 @@ public class UserDAOImpl  extends ADAO<Integer,User> implements IUserDAO{
 				return false;
 			}
 			if(Column.equalsIgnoreCase("password")){
-				value=Encode.getEncode("MD5", value.toString());
+				value=Encode.getEncode(Encode.MD5, value.toString());
 			}
 			String sql="UPDATE  user SET "+Column+ " =?  WHERE id="+id;
 			if(jdbcTemplate.update(sql, value)>0){
@@ -72,7 +72,7 @@ public class UserDAOImpl  extends ADAO<Integer,User> implements IUserDAO{
 		}
 		public User findByEmail(String email) throws Exception {
 			// TODO Auto-generated method stub
-			String sql="SELECT *FROM user WHERE email=?";
+			String sql="SELECT * FROM user WHERE email=?";
 			RowMapper<User> rowMapper=new BeanPropertyRowMapper<>(User.class);
 			User user=jdbcTemplate.queryForObject(sql, rowMapper,email);
 			return user;

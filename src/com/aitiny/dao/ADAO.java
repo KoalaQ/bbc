@@ -37,6 +37,7 @@ public abstract class ADAO<K,V>{
 		 */
 		@PostConstruct
 		protected  abstract void initADAO();
+		
 		public boolean doUpdate(K key, String Column, Object value)
 				throws Exception {
 			if(Column.equalsIgnoreCase(keyName)){
@@ -60,7 +61,7 @@ public abstract class ADAO<K,V>{
 
 		public V findById(K key) throws Exception {
 			// TODO Auto-generated method stub
-			System.out.println(jdbcTemplate);
+			//System.out.println(jdbcTemplate);
 			String sql="SELECT *FROM "+table+" WHERE "+keyName+"=?";
 			RowMapper<V> rowMapper=new BeanPropertyRowMapper<>(cls);
 			V v=jdbcTemplate.queryForObject(sql, rowMapper,key);

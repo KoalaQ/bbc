@@ -8,6 +8,8 @@ import java.security.MessageDigest;
  *
  */
 public class Encode {
+	public static String MD5="MD5";
+	public static String SHA="SHA";
 	/**
 	 * 静态加密方法
 	 * @param codeType 加密方式（MD5，SHA）
