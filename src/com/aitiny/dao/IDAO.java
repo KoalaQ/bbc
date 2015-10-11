@@ -26,10 +26,11 @@ public interface IDAO<K,V> {
 	 */
 	public boolean doUpdate (V vo)throws Exception;
 	/**
-	 * 修改对应id的相应Column的值，反射处理相应参数
+	 * 修改对应id的相应Column的值，.有修改密码的表则重写此方法，防止其他表多余判断是否为密码字段。
+	 * 用户一般不常修改个人信息，暂时这样，可以考虑添加专门修改密码的方法
 	 * @param id  要修改的id
 	 * @param Column  要修改的Column
-	 * @param value   传入的参数，Object类型，通过反射处理相应参数
+	 * @param value   传入的参数，Object类型，
 	 * @return  修改成功返回true，否则返回false
 	 * @throws Exception
 	 */

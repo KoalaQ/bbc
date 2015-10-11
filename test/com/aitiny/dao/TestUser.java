@@ -32,10 +32,10 @@ public class TestUser {
 	}
 	@Test
 	public void testfindById() {
-		UserDAOImpl userDAO=(UserDAOImpl) ctx.getBean("userDAO");
+
 		 System.out.println(userDAO);
 		 try {
-			System.out.println(userDAO.findById(1));
+			System.out.println(userDAO.findById(6));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,7 +47,7 @@ public class TestUser {
 		 try {
 			System.out.println(userDAO.findAll().size()+", "+userDAO.findAll().get(0));
 
-			for(Object o :BeanToObjectUtil.getFiledValues(userDAO.findAll().get(0))){
+			for(Object o : userDAO.findAll()){
 				System.out.println(o.toString());
 			}
 		} catch (Exception e) {
@@ -58,7 +58,7 @@ public class TestUser {
 	@Test
 	public void testdoCreate(){
 		try {
-			User vo=new User( "test6@qq.com", "123", "kit", "c:/1jpg", 0, 0, 0, 0, 0, 0, 0, 0,new Date());
+			User vo=new User( "test7@qq.com", "123", "kit", "c:/1jpg", 0, 0, 0, 0, 0, 0, 0, 0,new Date());
 			System.out.println(userDAO.doCreate(vo));
 			
 			
@@ -71,9 +71,9 @@ public class TestUser {
 	public void testdoUpdate(){
 		try {
 			User vo=new User( "doupdate@qq.com", "123", "kit", "c:/1jpg", 0, 0, 0, 0, 0, 0, 0, 0,new Date());
-			vo.setId(3);
-			//System.out.println(userDAO.doUpdate(vo));
-			System.out.println(userDAO.doUpdate(4, "id", "dog@qq.com"));
+			vo.setId(6);
+			System.out.println(userDAO.doUpdate(vo));
+			System.out.println(userDAO.doUpdate(4, "email", "dog@qq.com"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,7 +82,7 @@ public class TestUser {
 	@Test
 	public void testdoRemove(){
 		try {
-			System.out.println(userDAO.doRemove(3));
+			System.out.println(userDAO.doRemove(4));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -91,7 +91,7 @@ public class TestUser {
 	@Test
 	public void testfindAllfenye(){
 		try {
-			List<User> users=userDAO.findAll("id", "1", 1,5);
+			List<User> users=userDAO.findAll("id", "", 1,5);
 			for(User user : users){
 				System.out.println(user);
 			}
@@ -117,7 +117,7 @@ public class TestUser {
 	@Test
 	public void testgetAllCount(){
 		try {
-			System.out.println(userDAO.getAllCount("id", "1"));
+			System.out.println(userDAO.getAllCount("nickName", "t"));
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
