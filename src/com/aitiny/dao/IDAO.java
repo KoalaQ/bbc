@@ -1,6 +1,5 @@
 package com.aitiny.dao;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,12 +28,12 @@ public interface IDAO<K,V> {
 	 * 修改对应id的相应Column的值，.有修改密码的表则重写此方法，防止其他表多余判断是否为密码字段。
 	 * 用户一般不常修改个人信息，暂时这样，可以考虑添加专门修改密码的方法
 	 * @param id  要修改的id
-	 * @param Column  要修改的Column
-	 * @param value   传入的参数，Object类型，
+	 * @param Columns  要修改的Column，多个数组
+	 * @param values   传入的参数，Object类型，数组，与Columns对应
 	 * @return  修改成功返回true，否则返回false
 	 * @throws Exception
 	 */
-	public boolean doUpdate(K id,String Column,Object value)throws Exception;
+	public boolean doUpdate(K id,String[] Columns,Object[] value)throws Exception;
 	/**
 	 * 修改对应id的相应Column的值，参数类型固定
 	 * @param id  要修改的id

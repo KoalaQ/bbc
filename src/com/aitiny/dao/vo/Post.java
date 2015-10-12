@@ -18,6 +18,26 @@ public class Post implements Serializable {
 	private String files;
 	private  String summary;
 	private String tag;
+	
+	public Post() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Post(Integer bid, Integer uid, Integer aid, String name,
+			String content, Date publishTime, String files, String summary,
+			String tag) {
+		super();
+		this.bid = bid;
+		this.uid = uid;
+		this.aid = aid;
+		this.name = name;
+		this.content = content;
+		this.publishTime = publishTime;
+		this.files = files;
+		this.summary = summary;
+		this.tag = tag;
+	}
+
 	public String getTag() {
 		return tag;
 	}
@@ -31,14 +51,16 @@ public class Post implements Serializable {
 		this.aid = aid;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", bid=" + bid + ", uid=" + uid + ", name="
-				+ name + ", content=" + content + ", publishTime="
-				+ publishTime + ", viewcount=" + viewcount + ", like=" + like
-				+ ", status=" + status + ", files=" + files + ", summary="
-				+ summary + "]";
+		return "Post [id=" + id + ", bid=" + bid + ", uid=" + uid + ", aid="
+				+ aid + ", name=" + name + ", content=" + content
+				+ ", publishTime=" + publishTime + ", viewcount=" + viewcount
+				+ ", like=" + like + ", status=" + status + ", files=" + files
+				+ ", summary=" + summary + ", tag=" + tag + "]";
 	}
+
 	public Integer getId() {
 		return id;
 	}

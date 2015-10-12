@@ -1,18 +1,16 @@
 package com.aitiny.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-
-import com.aitiny.dao.vo.User;
-import com.aitiny.util.BeanToObjectUtil;
-import com.aitiny.util.Encode;
 /**
+ * 加载啦jdbcTemplate
  * 封装算法有：
  * <li> doUpdate(Integer key, String Column, Object value) 指定Colunm的修改参数
  * <li> doRemove(Integer key)  指定key删除
@@ -28,23 +26,39 @@ import com.aitiny.util.Encode;
  */
 public abstract class ADAO<K,V>{
 
+	@Autowired
+	@Qualifier("jdbcTemplate")
 		protected JdbcTemplate jdbcTemplate;
 		protected String table;
 		protected Class<V> cls;
 		protected String keyName;
 		/**
-		 * 需要设定table,cls,keyName,jdbcTemplate。可以更改为通过资源文件然后注入实现
+		 * 需要设定table,cls,keyName。可以更改为通过资源文件然后注入实现
 		 */
 		@PostConstruct
 		protected  abstract void initADAO();
 		
-		public boolean doUpdate(K key, String Column, Object value)
+		public boolean doUpdate(K key, String[] Columns, Object[] values)
 				throws Exception {
-			if(Column.equalsIgnoreCase(keyName)){
+			if(Columns.length!=values.length){
 				return false;
 			}
-			String sql="UPDATE  "+table+" SET "+Column+ " =?  WHERE  "+keyName+"="+key;
-			if(jdbcTemplate.update(sql, value)>0){
+			String sql="";
+			StringBuilder sb=new StringBuilder();
+			sb.append("UPDATE  "+table+" SET  ");
+			for(int i=0;i<values.length;i++){	
+				if(Columns[i].equalsIgnoreCase(keyName)){
+					return false;
+				}
+				sb.append("  "+Columns[i]+"=? ");
+				if(i<values.length-1){
+					sb.append(" , ");
+				}
+			}
+			sb.append(" WHERE  "+keyName+"="+key);
+			sql=sb.toString();
+			System.out.println(sql);	
+			if(jdbcTemplate.update(sql, values)>0){
 				return true;
 				}
 			return false;
@@ -127,7 +141,6 @@ public abstract class ADAO<K,V>{
 				throws Exception {
 			String sql="SELECT COUNT(*) FROM "+ table
 					+ "  WHERE "+column+" LIKE  ?  ";
-			RowMapper<V> rowMapper=new BeanPropertyRowMapper<>(cls);
 			Object[] params=new Object[]{"%"+keyWord+"%"};
 		//	System.out.println(params[0]+","+params[0]+","+params[0]);
 			Integer count=jdbcTemplate.queryForObject(sql, params, Integer.class);

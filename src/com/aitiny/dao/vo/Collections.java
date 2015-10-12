@@ -4,12 +4,29 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Collections implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer uid;
 	private Integer pid;
 	private Date time;
 	private String title;
 	private String summary;
+	
+	public Collections() {
+		// TODO Auto-generated constructor stub
+	}
+	public Collections(Integer uid, Integer pid, Date time, String title,
+			String summary) {
+		super();
+		this.uid = uid;
+		this.pid = pid;
+		this.time = time;
+		this.title = title;
+		this.summary = summary;
+	}
 	@Override
 	public String toString() {
 		return "Collections [id=" + id + ", uid=" + uid + ", pid=" + pid

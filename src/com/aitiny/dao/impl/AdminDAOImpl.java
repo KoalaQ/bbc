@@ -1,9 +1,6 @@
 package com.aitiny.dao.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -14,14 +11,10 @@ import com.aitiny.util.Encode;
 @Repository("adminDAO")
 public class AdminDAOImpl extends ADAO<Integer, Admin> implements IAdminDAO {
 
-	@Autowired
-	@Qualifier("jdbcTemplate")
-	private JdbcTemplate ajdbcTemplate;
+
 
 	@Override
 	protected void initADAO() {
-		// TODO Auto-generated method stub
-		this.jdbcTemplate=this.ajdbcTemplate;
 		this.table="admin";
 		this.cls=Admin.class;
 		this.keyName="id";
@@ -61,16 +54,30 @@ public class AdminDAOImpl extends ADAO<Integer, Admin> implements IAdminDAO {
 		return admin;
 	}
 	
-	public boolean doUpdate(Integer key, String Column, Object value)
+	public boolean doUpdate(Integer key, String[] Columns, Object[] values)
 			throws Exception {
-		if(Column.equalsIgnoreCase(keyName)){
+		if(Columns.length!=values.length){
 			return false;
 		}
-		if(Column.equalsIgnoreCase("password")){
-			value=Encode.getEncode(Encode.MD5, value.toString());
+		String sql="";
+		StringBuilder sb=new StringBuilder();
+		sb.append("UPDATE  "+table+" SET  ");
+		for(int i=0;i<values.length;i++){	
+			if(Columns[i].equalsIgnoreCase(keyName)){
+				return false;
+			}
+			if(Columns[i].equalsIgnoreCase("password")){
+				values[i]=Encode.getEncode(Encode.MD5, values[i].toString());
+			}
+			sb.append("  "+Columns[i]+"=? ");
+			if(i<values.length-1){
+				sb.append(" , ");
+			}
 		}
-		String sql="UPDATE  "+table+" SET "+Column+ " =?  WHERE  "+keyName+"="+key;
-		if(jdbcTemplate.update(sql, value)>0){
+		sb.append(" WHERE  "+keyName+"="+key);
+		sql=sb.toString();
+		System.out.println(sql);	
+		if(jdbcTemplate.update(sql, values)>0){
 			return true;
 			}
 		return false;

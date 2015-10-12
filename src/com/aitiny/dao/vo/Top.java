@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Top implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer pid;
 	private Date time;

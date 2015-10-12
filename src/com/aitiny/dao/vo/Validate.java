@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Validate implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String uuid;
 	private Integer type;
@@ -12,6 +16,20 @@ public class Validate implements Serializable {
 	private Integer aid;
 	private Date time;
 	
+	
+	public Validate() {
+		// TODO Auto-generated constructor stub
+	}
+	public Validate(String uuid, Integer type, String message, Integer uid,
+			Integer aid, Date time) {
+		super();
+		this.uuid = uuid;
+		this.type = type;
+		this.message = message;
+		this.uid = uid;
+		this.aid = aid;
+		this.time = time;
+	}
 	public Date getTime() {
 		return time;
 	}

@@ -73,7 +73,7 @@ public class TestUser {
 			User vo=new User( "doupdate@qq.com", "123", "kit", "c:/1jpg", 0, 0, 0, 0, 0, 0, 0, 0,new Date());
 			vo.setId(6);
 			System.out.println(userDAO.doUpdate(vo));
-			System.out.println(userDAO.doUpdate(4, "email", "dog@qq.com"));
+			//System.out.println(userDAO.doUpdate(4, "email", "dog@qq.com"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -11,6 +11,21 @@ public class Log implements Serializable {
 	private String content;
 	private Date time;
 	private String name;
+	public Log() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public Log(Integer aid, Integer uid, String content, Date time, String name) {
+		super();
+		this.aid = aid;
+		this.uid = uid;
+		this.content = content;
+		this.time = time;
+		this.name = name;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Log [id=" + id + ", aid=" + aid + ", uid=" + uid + ", content="

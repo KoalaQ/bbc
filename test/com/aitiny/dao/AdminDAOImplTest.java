@@ -57,9 +57,9 @@ public class AdminDAOImplTest {
 	@Test
 	public void testDoUpdate() {
 		try {
-			System.out.println(adminDAO.doUpdate(1, "email", "jqq1.@jcong"));
-			System.out.println(adminDAO.doUpdate(1, "password", "jqq1.@jcong"));
-			System.out.println(adminDAO.doUpdate(1, "level", "10"));
+//			System.out.println(adminDAO.doUpdate(1, "email", "jqq1.@jcong"));
+//			System.out.println(adminDAO.doUpdate(1, "password", "jqq1.@jcong"));
+//			System.out.println(adminDAO.doUpdate(1, "level", "10"));
 			
 			
 		} catch (Exception e) {
