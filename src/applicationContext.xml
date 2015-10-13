@@ -13,6 +13,8 @@
 		 -->
 		 <!-- 扫描包-->
 		 <context:component-scan base-package="com.aitiny.dao.*"></context:component-scan> 
+		 <context:component-scan base-package="com.aitiny.service.*"></context:component-scan> 
+		
 		<!-- 加载资源 
 		<context:property-placeholder location="classpath:jdbc.properties"/>-->
 		<!-- 引入jdbc.properties,自定义的属性编辑类解密		-->

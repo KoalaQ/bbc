@@ -2,7 +2,11 @@ package com.aitiny.dao.vo;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ * 每个用户只能拥有一个（id,type）相同的验证，双主键。拥有后只能做更新即选择啦再次获取，或者过期删除
+ * @author koala
+ *
+ */
 @SuppressWarnings("serial")
 public class Message implements Serializable {
 	private Integer id;

@@ -100,7 +100,7 @@ public class AdminDAOImplTest {
 	@Test
 	public void testFindById() {
 	try {
-		System.out.println(adminDAO.findById(1));
+		System.out.println(adminDAO.findById(133));
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -140,7 +140,7 @@ public class AdminDAOImplTest {
 	@Test
 	public void testGetAllCount() {
 		try {
-			System.out.println(adminDAO.getAllCount("email", "jqq"));
+			System.out.println(adminDAO.getAllCount("email", "jq0101q"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

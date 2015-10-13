@@ -1,11 +1,13 @@
 package com.aitiny.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -57,7 +59,7 @@ public abstract class ADAO<K,V>{
 			}
 			sb.append(" WHERE  "+keyName+"="+key);
 			sql=sb.toString();
-			System.out.println(sql);	
+		//	System.out.println(sql);	
 			if(jdbcTemplate.update(sql, values)>0){
 				return true;
 				}
@@ -76,9 +78,14 @@ public abstract class ADAO<K,V>{
 		public V findById(K key) throws Exception {
 			// TODO Auto-generated method stub
 			//System.out.println(jdbcTemplate);
+			V v=null;
 			String sql="SELECT *FROM "+table+" WHERE "+keyName+"=?";
 			RowMapper<V> rowMapper=new BeanPropertyRowMapper<>(cls);
-			V v=jdbcTemplate.queryForObject(sql, rowMapper,key);
+			try {
+				v=jdbcTemplate.queryForObject(sql, rowMapper,key);
+			} catch (EmptyResultDataAccessException e) {
+				return null;
+			}
 			return v;
 		}
 
@@ -87,7 +94,12 @@ public abstract class ADAO<K,V>{
 			String sql="SELECT *FROM "+table;
 			
 			RowMapper<V> rowMapper=new BeanPropertyRowMapper<>(cls);
-			List<V> v=jdbcTemplate.query(sql, rowMapper);
+			List<V> v=null;
+			try {
+				v=jdbcTemplate.query(sql, rowMapper);
+			} catch (EmptyResultDataAccessException e) {
+				return new ArrayList<V>();
+			}
 			return v;
 		}
 
@@ -107,7 +119,12 @@ public abstract class ADAO<K,V>{
 			RowMapper<V> rowMapper=new BeanPropertyRowMapper<>(cls);
 			Object[] params=new Object[]{"%"+keyWord+"%",(currentPage-1)*lineSize,lineSize};
 		//	System.out.println(params[0]+","+params[0]+","+params[0]);
-			List<V> v=jdbcTemplate.query(sql, rowMapper,params);
+			List<V> v=null;
+			try {
+				v=jdbcTemplate.query(sql, rowMapper,params);
+			} catch (EmptyResultDataAccessException e) {
+				return new ArrayList<V>();
+			}
 			return v;
 		}
 
@@ -132,7 +149,12 @@ public abstract class ADAO<K,V>{
 			RowMapper<V> rowMapper=new BeanPropertyRowMapper<>(cls);
 			Object[] params=new Object[]{"%"+keyWord+"%",(currentPage-1)*lineSize,lineSize};
 		//	System.out.println(params[0]+","+params[0]+","+params[0]);
-			List<V> v=jdbcTemplate.query(sql, rowMapper,params);
+			List<V> v=null;
+			try {
+				v=jdbcTemplate.query(sql, rowMapper,params);
+			} catch (EmptyResultDataAccessException e) {
+				return new ArrayList<V>();
+			}
 			return v;
 		}
 

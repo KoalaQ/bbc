@@ -76,7 +76,7 @@ public class AdminDAOImpl extends ADAO<Integer, Admin> implements IAdminDAO {
 		}
 		sb.append(" WHERE  "+keyName+"="+key);
 		sql=sb.toString();
-		System.out.println(sql);	
+		//System.out.println(sql);	
 		if(jdbcTemplate.update(sql, values)>0){
 			return true;
 			}

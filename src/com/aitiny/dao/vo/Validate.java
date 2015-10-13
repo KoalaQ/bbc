@@ -15,13 +15,14 @@ public class Validate implements Serializable {
 	private Integer uid;
 	private Integer aid;
 	private Date time;
-	
+	private String valicode;
 	
 	public Validate() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public Validate(String uuid, Integer type, String message, Integer uid,
-			Integer aid, Date time) {
+			Integer aid, Date time, String valicode) {
 		super();
 		this.uuid = uuid;
 		this.type = type;
@@ -29,7 +30,24 @@ public class Validate implements Serializable {
 		this.uid = uid;
 		this.aid = aid;
 		this.time = time;
+		this.valicode = valicode;
 	}
+
+	@Override
+	public String toString() {
+		return "Validate [id=" + id + ", uuid=" + uuid + ", type=" + type
+				+ ", message=" + message + ", uid=" + uid + ", aid=" + aid
+				+ ", time=" + time + ", valicode=" + valicode + "]";
+	}
+
+	public String getValicode() {
+		return valicode;
+	}
+
+	public void setValicode(String valicode) {
+		this.valicode = valicode;
+	}
+
 	public Date getTime() {
 		return time;
 	}
@@ -41,11 +59,6 @@ public class Validate implements Serializable {
 	}
 	public void setAid(Integer aid) {
 		this.aid = aid;
-	}
-	@Override
-	public String toString() {
-		return "Validate [id=" + id + ", uuid=" + uuid + ", type=" + type
-				+ ", message=" + message + ", uid=" + uid + "]";
 	}
 	public Integer getId() {
 		return id;

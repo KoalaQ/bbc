@@ -8,22 +8,20 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.aitiny.dao.vo.Validate;
-import com.aitiny.util.StringUtil;
+import com.aitiny.dao.vo.Reply;
 
-public class IValidateDAOTest {
+public class IReplyDAOTest {
 	ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-	IValidateDAO validateDAO=(IValidateDAO) ctx.getBean("validateDAO");
+	IReplyDAO replyDAO=(IReplyDAO) ctx.getBean("replyDAO");
 	@Test
 	public void testDoCreate() {
-		Validate validate=new Validate( StringUtil.getUUID(),2,"test", 1, null, new Date(),"1234");
+		Reply reply=new Reply(1, 1, 1, 1, 1, "test", new Date());
 		try {
-			System.out.println(this.validateDAO.doCreate(validate));
+			System.out.println(this.replyDAO.doCreate(reply));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Test
@@ -44,7 +42,7 @@ public class IValidateDAOTest {
 	@Test
 	public void testFindById() {
 		try {
-			System.out.println(this.validateDAO.findById(4));
+			System.out.println(this.replyDAO.findById(1));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

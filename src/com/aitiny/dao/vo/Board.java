@@ -17,6 +17,18 @@ public class Board implements Serializable {
 		private Integer postsCount;
 		private Date lastPosts;
 		private Integer todayPosts;
+		
+		public Board(String name, String description, Integer parentId,
+				Integer aid) {
+			super();
+			this.name = name;
+			this.description = description;
+			this.parentId = parentId;
+			this.aid = aid;
+		}
+		public Board() {
+			super();
+		}
 		@Override
 		public String toString() {
 			return "Board [id=" + id + ", name=" + name + ", description="

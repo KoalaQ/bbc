@@ -15,6 +15,16 @@ public class Admin implements Serializable {
 	private String name;
 	private String photoPath;
 
+	public Admin() {
+		super();
+	}
+	public Admin(String email, String password, String nickName, String name) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.nickName = nickName;
+		this.name = name;
+	}
 	@Override
 	public String toString() {
 		return "Admin [id=" + id + ", email=" + email + ", password="
