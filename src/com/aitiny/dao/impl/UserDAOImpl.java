@@ -1,6 +1,7 @@
 package com.aitiny.dao.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.aitiny.dao.ADAO;
 import com.aitiny.dao.IUserDAO;
 import com.aitiny.dao.vo.User;
+import com.aitiny.dao.vo.Validate;
 import com.aitiny.util.BeanToObjectUtil;
 import com.aitiny.util.Encode;
 
@@ -77,18 +79,64 @@ public class UserDAOImpl  extends ADAO<Integer,User> implements IUserDAO{
 		}
 		public User findByEmail(String email) throws Exception {
 			// TODO Auto-generated method stub
-			String sql="SELECT * FROM user WHERE email=?";
-			RowMapper<User> rowMapper=new BeanPropertyRowMapper<>(User.class);
-			User user=jdbcTemplate.queryForObject(sql, rowMapper,email);
-			return user;
+		
+			List<User> user=this.afindByColumns(new String[]{"email"}, new Object[]{email,1,10});
+			if(user.size()<0){
+				return null;
+			}
+			return user.get(0);
 		}
 
 
 		public User findByNickName(String nickName) throws Exception {
-			String sql="SELECT *FROM user WHERE nickName=?";
-			RowMapper<User> rowMapper=new BeanPropertyRowMapper<>(User.class);
-			User user=jdbcTemplate.queryForObject(sql, rowMapper,nickName);
-			return user;
+			List<User> user=this.afindByColumns(new String[]{"nickName"}, new Object[]{nickName,1,10});
+			if(user.size()<0){
+				return null;
+			}
+			return user.get(0);
+		}
+
+		
+		
+		
+		@Override
+		public boolean doRemove(Integer id) throws Exception {
+			// TODO Auto-generated method stub
+			return this.adoRemoveByKey(id);
+		}
+
+		@Override
+		public User findById(Integer id) throws Exception {
+			// TODO Auto-generated method stub
+			return this.afindByKey(id);
+		}
+
+		@Override
+		public List<User> findAll() throws Exception {
+			// TODO Auto-generated method stub
+			return this.afindAll();
+		}
+
+		@Override
+		public List<User> findAll(String column, String keyWord,
+				Integer currentPage, Integer lineSize) throws Exception {
+			// TODO Auto-generated method stub
+			return this.afindPaging(column, keyWord, currentPage, lineSize);
+		}
+
+		@Override
+		public List<User> findAll(String column, String keyWord,
+				Integer currentPage, Integer lineSize, String orderColumn,
+				Integer orderType) throws Exception {
+			// TODO Auto-generated method stub
+			return this.afindPaging(column, keyWord, currentPage, lineSize, orderColumn, orderType);
+		}
+
+		@Override
+		public Integer getAllCount(String column, String keyWord)
+				throws Exception {
+			// TODO Auto-generated method stub
+			return this.agetPagingCount(column, keyWord);
 		}
 
 

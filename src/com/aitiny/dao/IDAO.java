@@ -33,7 +33,7 @@ public interface IDAO<K,V> {
 	 * @return  修改成功返回true，否则返回false
 	 * @throws Exception
 	 */
-	public boolean doUpdate(K id,String[] Columns,Object[] value)throws Exception;
+	public boolean doUpdate(K id,String[] Columns,Object[] values)throws Exception;
 	/**
 	 * 修改对应id的相应Column的值，参数类型固定
 	 * @param id  要修改的id

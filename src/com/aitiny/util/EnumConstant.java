@@ -9,4 +9,7 @@ public class EnumConstant {
 		
 		public final static int Message_type_new=0;
 		public final static int Message_type_readed=1;
+		
+		public final static int Order_type_ASEC=0;
+		public final static int Order_type_DESC=1;
 }

@@ -1,6 +1,7 @@
 package com.aitiny.dao.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -45,11 +46,41 @@ public class LogDAOImpl extends ADAO<Integer, Log> implements ILogDAO {
 	@Override
 	public boolean doRemove(Date time) throws Exception {
 		// TODO Auto-generated method stub
-		String sql="DELETE  FROM "+table+"  WHERE time<?";
-		if(jdbcTemplate.update(sql,time)>0){
-			return true;
-			}
-		return false;
+		
+		return this.adoRemoveByTime(time);
+	}
+	@Override
+	public boolean doRemove(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoRemoveByKey(id);
+	}
+	@Override
+	public Log findById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindByKey(id);
+	}
+	@Override
+	public List<Log> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindAll();
+	}
+	@Override
+	public List<Log> findAll(String column, String keyWord,
+			Integer currentPage, Integer lineSize) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindPaging(column, keyWord, currentPage, lineSize);
+	}
+	@Override
+	public List<Log> findAll(String column, String keyWord,
+			Integer currentPage, Integer lineSize, String orderColumn,
+			Integer orderType) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindPaging(column, keyWord, currentPage, lineSize, orderColumn, orderType);
+	}
+	@Override
+	public Integer getAllCount(String column, String keyWord) throws Exception {
+		// TODO Auto-generated method stub
+		return this.agetPagingCount(column, keyWord);
 	}
 
 

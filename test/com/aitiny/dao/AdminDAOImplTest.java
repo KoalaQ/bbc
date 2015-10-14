@@ -30,7 +30,7 @@ public class AdminDAOImplTest {
 	public void testDoUpdateAdmin() {
 		Admin admin=new Admin();
 		admin.setId(1);
-		admin.setEmail("admin6@qq.com");
+		admin.setEmail("admin3@qq.com");
 		admin.setPassword("123456");
 		admin.setLevel(2);
 		admin.setNickName("nadmin6");
@@ -47,7 +47,7 @@ public class AdminDAOImplTest {
 	@Test
 	public void testFindByEmail() {
 			try {
-				System.out.println(adminDAO.findByEmail("admin2@qq.com"));
+				System.out.println(adminDAO.findByEmail("admin3@qq.com"));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

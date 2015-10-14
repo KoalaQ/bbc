@@ -1,5 +1,7 @@
 package com.aitiny.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.aitiny.dao.ADAO;
@@ -31,6 +33,45 @@ public class ReplyDAOImpl extends ADAO<Integer, Reply> implements IReplyDAO {
 	public boolean doUpdate(Reply vo) throws Exception {
 		// TODO Auto-generated method stub
 		throw new MethodNotRealize("该方法未实现");
+	}
+	@Override
+	public boolean doUpdate(Integer id, String[] Columns, Object[] values)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoUpdate(id, Columns, values);
+	}
+	@Override
+	public boolean doRemove(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoRemoveByKey(id);
+	}
+	@Override
+	public Reply findById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindByKey(id);
+	}
+	@Override
+	public List<Reply> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindAll();
+	}
+	@Override
+	public List<Reply> findAll(String column, String keyWord,
+			Integer currentPage, Integer lineSize) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindPaging(column, keyWord, currentPage, lineSize);
+	}
+	@Override
+	public List<Reply> findAll(String column, String keyWord,
+			Integer currentPage, Integer lineSize, String orderColumn,
+			Integer orderType) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindPaging(column, keyWord, currentPage, lineSize, orderColumn, orderType);
+	}
+	@Override
+	public Integer getAllCount(String column, String keyWord) throws Exception {
+		// TODO Auto-generated method stub
+		return this.agetPagingCount(column, keyWord);
 	}
 
 

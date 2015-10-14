@@ -1,5 +1,7 @@
 package com.aitiny.dao.impl;
 
+import java.util.List;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -45,49 +47,62 @@ public class ValidateDAOImpl extends ADAO<Integer, Validate> implements IValidat
 	}
 	@Override
 	public Validate findByUUID(String uuid) throws Exception {
-		Validate validate=null;
-		String sql="SELECT * FROM validate WHERE uuid=?";
-		RowMapper<Validate> rowMapper=new BeanPropertyRowMapper<>(Validate.class);
-		try {
-			validate=this.jdbcTemplate.queryForObject(sql, rowMapper,uuid);
-		} catch (EmptyResultDataAccessException e) {
-			// TODO: handle exception
+		List<Validate> validates=this.afindByColumns(new String[]{"uuid"}, new Object[]{uuid,1,10});
+		if(validates.size()<0){
 			return null;
 		}
-		
-		return validate;
+		return validates.get(0);
 	}
 	@Override
 	public Validate findByAidAndType(Integer aid, Integer type)
-			throws Exception {
-		// TODO Auto-generated method stub
-		Validate validate=null;
-		String sql="SELECT * FROM validate WHERE aid=?  AND type=? ";
-		RowMapper<Validate> rowMapper=new BeanPropertyRowMapper<>(Validate.class);
-		try {
-			validate=this.jdbcTemplate.queryForObject(sql, rowMapper,aid,type);
-		} catch (EmptyResultDataAccessException e) {
-			// TODO: handle exception
+			throws Exception {		
+		List<Validate> validates=this.afindByColumns(new String[]{"aid","type"}, new Object[]{aid,type,1,10});
+		if(validates.size()<0){
 			return null;
 		}
-		
-		return validate;
+		return validates.get(0);
 	}
 	@Override
 	public Validate findByUidAndTpye(Integer uid, Integer type)
 			throws Exception {
-		// TODO Auto-generated method stub
-		Validate validate=null;
-		String sql="SELECT * FROM validate WHERE uid=? AND type=?";
-		RowMapper<Validate> rowMapper=new BeanPropertyRowMapper<>(Validate.class);
-		try {
-			validate=this.jdbcTemplate.queryForObject(sql, rowMapper,uid,type);
-		} catch (EmptyResultDataAccessException e) {
-			// TODO: handle exception
+		List<Validate> validates=this.afindByColumns(new String[]{"uid","type"}, new Object[]{uid,type,1,10});
+		if(validates.size()<0){
 			return null;
 		}
-		
-		return validate;
+		return validates.get(0);
+	}
+	@Override
+	public boolean doRemove(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoRemoveByKey(id);
+	}
+	@Override
+	public Validate findById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindByKey(id);
+	}
+	@Override
+	public List<Validate> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindAll();
+	}
+	@Override
+	public List<Validate> findAll(String column, String keyWord,
+			Integer currentPage, Integer lineSize) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindPaging(column, keyWord, currentPage, lineSize);
+	}
+	@Override
+	public List<Validate> findAll(String column, String keyWord,
+			Integer currentPage, Integer lineSize, String orderColumn,
+			Integer orderType) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindPaging(column, keyWord, currentPage, lineSize, orderColumn, orderType);
+	}
+	@Override
+	public Integer getAllCount(String column, String keyWord) throws Exception {
+		// TODO Auto-generated method stub
+		return this.agetPagingCount(column, keyWord);
 	}
 
 

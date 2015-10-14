@@ -1,7 +1,7 @@
 package com.aitiny.dao.impl;
 
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.RowMapper;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.aitiny.dao.ADAO;
@@ -44,16 +44,6 @@ public class AdminDAOImpl extends ADAO<Integer, Admin> implements IAdminDAO {
 		return false;
 	}
 
-	@Override
-	public Admin findByEmail(String email) throws Exception {
-		// TODO Auto-generated method stub
-		//email中有特殊字符@会使得链接字符串sql无法执行，使用预处理正常
-		String sql="SELECT * FROM admin WHERE email=?";
-		RowMapper<Admin> rowMapper=new BeanPropertyRowMapper<>(Admin.class);
-		Admin admin =this.jdbcTemplate.queryForObject(sql, rowMapper,email);
-		return admin;
-	}
-	
 	public boolean doUpdate(Integer key, String[] Columns, Object[] values)
 			throws Exception {
 		if(Columns.length!=values.length){
@@ -82,22 +72,76 @@ public class AdminDAOImpl extends ADAO<Integer, Admin> implements IAdminDAO {
 			}
 		return false;
 	}
+
+	@Override
+	public boolean doRemove(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoRemoveByKey(id);
+	}
+
+	@Override
+	public Admin findByEmail(String email) throws Exception {
+		// TODO Auto-generated method stub
+		//email中有特殊字符@会使得链接字符串sql无法执行，使用预处理正常
+		List<Admin> admins=this.afindByColumns(new String[]{"email"}, new Object[]{email,0,10});
+		if(admins.size()>0){
+			return admins.get(0);
+		}
+		return null;
+	}
+	
 	@Override
 	public Admin findByNickName(String nickName) throws Exception {
 		// TODO Auto-generated method stub
-		String sql="SELECT * FROM admin WHERE nickName=?";
-		RowMapper<Admin> rowMapper=new BeanPropertyRowMapper<>(Admin.class);
-		Admin admin=this.jdbcTemplate.queryForObject(sql, rowMapper,nickName);
-		return admin;
+
+		List<Admin> admins=this.afindByColumns(new String[]{"nickName"}, new Object[]{nickName,0,10});
+		if(admins.size()>0){
+			return admins.get(0);
+		}
+		return null;
 	}
 
 	@Override
 	public Admin findByName(String name) throws Exception {
 		// TODO Auto-generated method stub
-		String sql="SELECT * FROM admin WHERE name=?";
-		RowMapper<Admin> rowMapper=new BeanPropertyRowMapper<>(Admin.class);
-		Admin admin=this.jdbcTemplate.queryForObject(sql, rowMapper,name);
-		return admin;
+		List<Admin> admins=this.afindByColumns(new String[]{"name"}, new Object[]{name,0,10});
+		if(admins.size()>0){
+			return admins.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public Admin findById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindByKey(id);
+	}
+
+	@Override
+	public List<Admin> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindAll();
+	}
+
+	@Override
+	public List<Admin> findAll(String column, String keyWord,
+			Integer currentPage, Integer lineSize) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindPaging(column, keyWord, currentPage, lineSize);
+	}
+
+	@Override
+	public List<Admin> findAll(String column, String keyWord,
+			Integer currentPage, Integer lineSize, String orderColumn,
+			Integer orderType) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindPaging(column, keyWord, currentPage, lineSize, orderColumn, orderType);
+	}
+
+	@Override
+	public Integer getAllCount(String column, String keyWord) throws Exception {
+		// TODO Auto-generated method stub
+		return this.agetPagingCount(column, keyWord);
 	}
 
 }

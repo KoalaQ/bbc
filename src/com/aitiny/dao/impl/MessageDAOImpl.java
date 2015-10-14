@@ -1,12 +1,8 @@
 package com.aitiny.dao.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.aitiny.dao.ADAO;
@@ -38,66 +34,70 @@ public class MessageDAOImpl extends ADAO<Integer, Message> implements IMessageDA
 	}
 
 	@Override
-	public List<Message> findAll(Integer uid, Integer fuid,
-			Integer currentPage, Integer lineSize) throws Exception {
-		String sql="SELECT * FROM "+table+" "
-				+ " WHERE  fromUser =? AND toUser=?  "
-				+ "  LIMIT ?,?";
-		RowMapper<Message> rowMapper=new BeanPropertyRowMapper<>(cls);
-		Object[] params=new Object[]{uid,fuid,(currentPage-1)*lineSize,lineSize};
-	//	System.out.println(params[0]+","+params[0]+","+params[0]);
-		 List<Message> messages=null;
-		try {
-			messages=jdbcTemplate.query(sql, rowMapper,params);
-		} catch (EmptyResultDataAccessException e) {
-			return new ArrayList<Message>();
-		}
-		return messages;
+	public boolean doUpdate(Integer id, String[] Columns, Object[] values)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoUpdate(id, Columns, values);
+	}
+	@Override
+	public boolean doRemove(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoRemoveByKey(id);
+	}
+	@Override
+	public boolean doRemove(Date time) throws Exception {
+		
+		return this.adoRemoveByTime(time);
 	}
 	@Override
 	public Integer getAllCount(Integer uid, Integer fuid) throws Exception {
 		// TODO Auto-generated method stub
-		String sql="SELECT COUNT(*) FROM "+ table
-				+ " WHERE  fromUser =? AND toUser=?   ";
-		Object[] params=new Object[]{uid,fuid};
-	//	System.out.println(params[0]+","+params[0]+","+params[0]);
-		Integer count=jdbcTemplate.queryForObject(sql, params, Integer.class);
-		return count;
+		return this.afindByColumnsCounts(new String[]{"fromUser", "toUser"}, new Object[]{uid,fuid});
+	}
+	@Override
+	public List<Message> findAll(Integer uid, Integer fuid,
+			Integer currentPage, Integer lineSize) throws Exception {
+		return this.afindByColumns(new  String[]{"fromUser","toUser"}, new Object[]{uid,fuid,currentPage,lineSize});
+	}
+	@Override
+	public Message findById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindByKey(id);
+	}
+	@Override
+	public Integer getAllCount(Integer uid) throws Exception {
+		return this.afindByColumnsCounts(new String[]{"toUser"}, new Object[]{uid});
 	}
 	@Override
 	public List<Message> findAll(Integer uid, Integer currentPage,
 			Integer lineSize) throws Exception {
-		String sql="SELECT * FROM "+table+" "
-				+ " WHERE  toUser =?  "
-				+ "  LIMIT ?,?";
-		RowMapper<Message> rowMapper=new BeanPropertyRowMapper<>(cls);
-		Object[] params=new Object[]{uid,(currentPage-1)*lineSize,lineSize};
-	//	System.out.println(params[0]+","+params[0]+","+params[0]);
-		 List<Message> messages=null;
-		try {
-			messages=jdbcTemplate.query(sql, rowMapper,params);
-		} catch (EmptyResultDataAccessException e) {
-			return new ArrayList<Message>();
-		}
-		return messages;
+
+		return this.afindByColumns(new String[]{"toUser"}, new Object[]{uid,currentPage,lineSize});
 	}
 	@Override
-	public Integer getAllCount(Integer uid) throws Exception {
-		String sql="SELECT COUNT(*) FROM "+ table
-				+ " WHERE  toUser =?   ";
-		Object[] params=new Object[]{uid};
-	//	System.out.println(params[0]+","+params[0]+","+params[0]);
-		Integer count=jdbcTemplate.queryForObject(sql, params, Integer.class);
-		return count;
+	public List<Message> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindAll();
 	}
 	@Override
-	public boolean doRemove(Date time) throws Exception {
-		String sql="DELETE  FROM "+table+"  WHERE time<?";
-		if(jdbcTemplate.update(sql,time)>0){
-			return true;
-			}
-		return false;
+	public List<Message> findAll(String column, String keyWord,
+			Integer currentPage, Integer lineSize) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindPaging(column, keyWord, currentPage, lineSize);
 	}
+	@Override
+	public List<Message> findAll(String column, String keyWord,
+			Integer currentPage, Integer lineSize, String orderColumn,
+			Integer orderType) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindPaging(column, keyWord, currentPage, lineSize, orderColumn, orderType);
+	}
+	@Override
+	public Integer getAllCount(String column, String keyWord) throws Exception {
+		// TODO Auto-generated method stub
+		return this.agetPagingCount(column, keyWord);
+	}
+
 
 
 }
