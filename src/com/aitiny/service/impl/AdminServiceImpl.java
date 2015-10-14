@@ -1,5 +1,9 @@
 package com.aitiny.service.impl;
 
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,7 +20,7 @@ import com.aitiny.service.IAdminService;
 import com.aitiny.util.Encode;
 import com.aitiny.util.EnumConstant;
 @Service("adminService")
-public class AdminServiceImpl extends AService implements IAdminService {
+public class AdminServiceImpl extends AService<Admin> implements IAdminService {
 	@Autowired
 	@Qualifier("adminDAO")
 	private IAdminDAO adminDAO;
@@ -99,6 +103,12 @@ public class AdminServiceImpl extends AService implements IAdminService {
 		// TODO Auto-generated method stub
 		throw new MethodNotRealize("该方法未实现");
 		//return this.boardDAO.doRemove(board.getAid());
+	}
+	@Override
+	public Map<String, Object> listBoards(String column, String keyWord,
+			int currentPage, int lineSize) throws Exception {
+		// TODO Auto-generated method stub
+		return this.list(column, keyWord, currentPage, lineSize);
 	}
 
 

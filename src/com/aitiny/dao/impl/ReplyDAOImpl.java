@@ -18,8 +18,8 @@ public class ReplyDAOImpl extends ADAO<Integer, Reply> implements IReplyDAO {
 	@Override
 	public boolean doCreate(Reply vo) throws Exception {
 		// TODO Auto-generated method stub
-		String sql="INSERT INTO reply (pid,uid,type,parentid,nextid,content,time) VALUES (?,?,?,?,?,?,?)";
-		Object[] params=new Object[]{vo.getPid(),vo.getUid(),vo.getType(),vo.getParentid(),vo.getNextid(),vo.getContent(),vo.getTime()};
+		String sql="INSERT INTO reply (pid,uid,type,parentid,content,time,rootid) VALUES (?,?,?,?,?,?,?)";
+		Object[] params=new Object[]{vo.getPid(),vo.getUid(),vo.getType(),vo.getParentid(),vo.getContent(),vo.getTime(),vo.getRootid()};
 		if(this.jdbcTemplate.update(sql, params)>0){
 			return true;
 		}

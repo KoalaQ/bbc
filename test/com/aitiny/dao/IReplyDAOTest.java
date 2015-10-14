@@ -15,7 +15,7 @@ public class IReplyDAOTest {
 	IReplyDAO replyDAO=(IReplyDAO) ctx.getBean("replyDAO");
 	@Test
 	public void testDoCreate() {
-		Reply reply=new Reply(1, 1, 1, 1, 1, "test", new Date());
+		Reply reply=new Reply(1, 1, 1, 1, "test", new Date(), 1);
 		try {
 			System.out.println(this.replyDAO.doCreate(reply));
 		} catch (Exception e) {

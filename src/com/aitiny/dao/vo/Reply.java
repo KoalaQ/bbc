@@ -13,30 +13,48 @@ public class Reply implements Serializable {
 	private Integer pid;
 	private Integer uid;
 	private Integer type;
-	private Integer parentid;
+	private Integer parentid;//评论父节点，如果是文章评论则为pid.。
 	private Integer nextid;
 	private String content;
 	private Date time;
+	private Integer rootid;//评论根节点，如果是文章评论则为pid.。如果是子评论则为此评论文章id
 	public Reply() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
 	public Reply(Integer pid, Integer uid, Integer type, Integer parentid,
-			Integer nextid, String content, Date time) {
+			String content, Date time, Integer rootid) {
 		super();
 		this.pid = pid;
 		this.uid = uid;
 		this.type = type;
 		this.parentid = parentid;
-		this.nextid = nextid;
 		this.content = content;
 		this.time = time;
+		this.rootid = rootid;
 	}
+
+
 	@Override
 	public String toString() {
 		return "Reply [id=" + id + ", pid=" + pid + ", uid=" + uid + ", type="
 				+ type + ", parentid=" + parentid + ", nextid=" + nextid
-				+ ", content=" + content + ", time=" + time + "]";
+				+ ", content=" + content + ", time=" + time + ", rootid="
+				+ rootid + "]";
 	}
+
+
+	public Integer getRootid() {
+		return rootid;
+	}
+
+
+	public void setRootid(Integer rootid) {
+		this.rootid = rootid;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}

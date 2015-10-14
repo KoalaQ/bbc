@@ -1,5 +1,7 @@
 package com.aitiny.dao.impl;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Repository;
 
 import com.aitiny.dao.ADAO;
@@ -39,6 +41,15 @@ public class LogDAOImpl extends ADAO<Integer, Log> implements ILogDAO {
 			throws Exception {
 		// TODO Auto-generated method stub
 		throw new MethodNotRealize("该方法未实现");
+	}
+	@Override
+	public boolean doRemove(Date time) throws Exception {
+		// TODO Auto-generated method stub
+		String sql="DELETE  FROM "+table+"  WHERE time<?";
+		if(jdbcTemplate.update(sql,time)>0){
+			return true;
+			}
+		return false;
 	}
 
 

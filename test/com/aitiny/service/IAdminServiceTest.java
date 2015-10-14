@@ -8,13 +8,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.aitiny.dao.vo.Admin;
 import com.aitiny.dao.vo.Board;
+import com.aitiny.dao.vo.Log;
 
 public class IAdminServiceTest {
 	ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 	IAdminService adminService=(IAdminService) ctx.getBean("adminService");
 	@Test
 	public void testInsert() {
+//		Log log=new Log();
+//		System.out.println(log.getAid()+","+log.getUid());
 		Admin admin=new Admin();
+		System.out.println(admin.getEmail());
 		admin.setEmail("admin7@qq.com");
 		admin.setPassword("123456");
 		admin.setNickName("nadmin7");
@@ -122,7 +126,7 @@ public class IAdminServiceTest {
 	@Test
 	public void testlist() {
 		try {
-			System.out.println(adminService.list("id", "1", 1, 3));
+			System.out.println(adminService.listBoards("id", "1", 1, 3));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -49,12 +49,12 @@ public interface IAdminService {
 		 * @param keyWord 模糊查询的关键字空字符串查询全部
 		 * @param currentPage  当前所在页
 		 * @param lineSize		每页的数据长度
-		 * @return 该方法会返回两类数据：List<Emp>集合，Integer统计结果，所以使用Map保存，Map存放规则
-		 *         <li> key=allBoard：保存的是findAll()方法返回的List集合
-		 *         <li> key=boardCount: 保存的是getAllCount()方法的Integer数据
+		 * @return 该方法会返回两类数据：List<V>集合，Integer统计结果，所以使用Map保存，Map存放规则
+		 *         <li> key=all：保存的是findAll()方法返回的List集合
+		 *         <li> key=count: 保存的是getAllCount()方法的Integer数据
 		 * @throws Exception
 		 */
-		public Map<String,Object> list(String column,String keyWord,int currentPage,int lineSize)throws Exception;
+		public Map<String,Object> listBoards(String column,String keyWord,int currentPage,int lineSize)throws Exception;
 		
 		
 		

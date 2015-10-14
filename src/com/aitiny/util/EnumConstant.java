@@ -7,4 +7,6 @@ public class EnumConstant {
 		public final static int Validate_type_code=0;
 		public final static int Validate_type_url=1;
 		
+		public final static int Message_type_new=0;
+		public final static int Message_type_readed=1;
 }

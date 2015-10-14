@@ -51,7 +51,12 @@ IMessageDAO messageDAO=(IMessageDAO) ctx.getBean("messageDAO");
 
 	@Test
 	public void testFindAll() {
-		fail("Not yet implemented");
+	try {
+		System.out.println(this.messageDAO.findAll(1, 2, 1, 10));
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	}
 
 	@Test
@@ -66,7 +71,12 @@ IMessageDAO messageDAO=(IMessageDAO) ctx.getBean("messageDAO");
 
 	@Test
 	public void testGetAllCount() {
-		fail("Not yet implemented");
+		try {
+			System.out.println(this.messageDAO.getAllCount(1, 1));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
