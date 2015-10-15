@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.aitiny.dao.vo.Admin;
 import com.aitiny.dao.vo.Board;
 import com.aitiny.dao.vo.Log;
+import com.aitiny.util.EnumConstant;
 
 public class IAdminServiceTest {
 	ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
@@ -19,12 +20,19 @@ public class IAdminServiceTest {
 //		System.out.println(log.getAid()+","+log.getUid());
 		Admin admin=new Admin();
 		System.out.println(admin.getEmail());
-		admin.setEmail("admin7@qq.com");
+		admin.setEmail("admin10@qq.com");
 		admin.setPassword("123456");
-		admin.setNickName("nadmin7");
-		admin.setName("admin7");
+		admin.setNickName("nadmin10");
+		admin.setName("admin10");
+		admin.setLevel(EnumConstant.Admin_Level_High);
+		Admin insertAdmin=new Admin();
+		System.out.println(admin.getEmail());
+		insertAdmin.setEmail("admin10@qq.com");
+		insertAdmin.setPassword("123456");
+		insertAdmin.setNickName("nadmin10");
+		insertAdmin.setName("admin10");
 		try {
-			//System.out.println(this.adminService.insert(admin));
+			System.out.println(this.adminService.insert(admin, insertAdmin));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,14 +42,14 @@ public class IAdminServiceTest {
 	@Test
 	public void testChangeLevel() {
 		Admin admin=new Admin();
-		admin.setEmail("admin7@qq.com");
-		admin.setPassword("123456");
-		admin.setNickName("nadmin7");
-		admin.setName("admin7");
-		admin.setLevel(3);
-		admin.setId(6);
+		admin.setLevel(EnumConstant.Admin_Level_High);
+		
+		Admin insertAdmin=new Admin();
+		System.out.println(admin.getEmail());
+		insertAdmin.setId(1);
+		insertAdmin.setLevel(3);
 		try {
-			//System.out.println(this.adminService.changeLevel(admin));
+			System.out.println(this.adminService.changeLevel(admin, insertAdmin));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,7 +65,7 @@ public class IAdminServiceTest {
 	public void testLogin() {
 		Admin admin=new Admin();
 		admin.setEmail("admin7@qq.com");
-		admin.setPassword("123456s");
+		admin.setPassword("123456");
 		admin.setNickName("nadmin7");
 		admin.setName("admin7");
 		admin.setLevel(3);
@@ -78,7 +86,7 @@ public class IAdminServiceTest {
 		admin.setPassword("123456s");
 		admin.setNickName("nadmin7");
 		admin.setName("admin7");
-		admin.setPhotoPath("fff");
+		admin.setPhotoPath("ffgfgf");
 		admin.setLevel(3);
 		admin.setId(6);
 		try {

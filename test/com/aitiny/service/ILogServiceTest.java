@@ -13,7 +13,7 @@ public class ILogServiceTest {
 	ILogService logService=(ILogService) ctx.getBean("logService");
 	@Test
 	public void testInsert() {
-		Log log=new Log(null, 1, "test", new Date(), "user");
+		Log log=new Log(null, 1, "test", "user");
 		try {
 			System.out.println(logService.insert(log));
 		} catch (Exception e) {
@@ -35,7 +35,7 @@ public class ILogServiceTest {
 	@Test
 	public void testFind() {
 		try {
-			System.out.println(this.logService.find(1));
+			System.out.println(this.logService.find(11));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

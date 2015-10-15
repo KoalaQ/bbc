@@ -1,7 +1,5 @@
 package com.aitiny.service;
 
-import static org.junit.Assert.fail;
-
 import java.util.Date;
 
 import org.junit.Test;
@@ -28,7 +26,7 @@ public class IMessageServiceTest {
 	@Test
 	public void testHasRead() {
 	try {
-		System.out.println(this.messageService.hasRead(new int[]{1,2,3}));
+		System.out.println(this.messageService.hasRead(new int[]{1,2,7}));
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -49,7 +47,7 @@ public class IMessageServiceTest {
 	@Test
 	public void testGetMessages() {
 		try {
-			System.out.println(this.messageService.getMessages(2, 2, 1, 10));
+			System.out.println(this.messageService.getMessages(1, 1, 1, 10));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +57,7 @@ public class IMessageServiceTest {
 	@Test
 	public void testGetNewMessages() {
 		try {
-			System.out.println(this.messageService.getNewMessages(3, 1, 10));
+			System.out.println(this.messageService.getNewMessages(1, 1, 10));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -50,7 +50,7 @@ public class AdminServiceImpl extends AService<Admin> implements IAdminService {
 		if(admin.getLevel()!=EnumConstant.Admin_Level_High || insertAdmin.getLevel()==EnumConstant.Admin_Level_High){
 			return false;
 		}
-		return adminDAO.doUpdate(admin.getId(), new String[]{"level"}, new Object[]{insertAdmin.getLevel()});
+		return adminDAO.doUpdate(insertAdmin.getId(), new String[]{"level"}, new Object[]{insertAdmin.getLevel()});
 	}
 
 	@Override

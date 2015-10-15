@@ -8,6 +8,7 @@ import com.aitiny.dao.ADAO;
 import com.aitiny.dao.IAdminDAO;
 import com.aitiny.dao.vo.Admin;
 import com.aitiny.util.Encode;
+import com.aitiny.util.EnumConstant;
 @Repository("adminDAO")
 public class AdminDAOImpl extends ADAO<Integer, Admin> implements IAdminDAO {
 
@@ -83,7 +84,7 @@ public class AdminDAOImpl extends ADAO<Integer, Admin> implements IAdminDAO {
 	public Admin findByEmail(String email) throws Exception {
 		// TODO Auto-generated method stub
 		//email中有特殊字符@会使得链接字符串sql无法执行，使用预处理正常
-		List<Admin> admins=this.afindByColumns(new String[]{"email"}, new Object[]{email,0,10});
+		List<Admin> admins=this.afindByColumns(new String[]{"email"}, new Object[]{email,0,10},"id",EnumConstant.Order_type_ASEC);
 		if(admins.size()>0){
 			return admins.get(0);
 		}
@@ -94,7 +95,7 @@ public class AdminDAOImpl extends ADAO<Integer, Admin> implements IAdminDAO {
 	public Admin findByNickName(String nickName) throws Exception {
 		// TODO Auto-generated method stub
 
-		List<Admin> admins=this.afindByColumns(new String[]{"nickName"}, new Object[]{nickName,0,10});
+		List<Admin> admins=this.afindByColumns(new String[]{"nickName"}, new Object[]{nickName,0,10},"id",EnumConstant.Order_type_ASEC);
 		if(admins.size()>0){
 			return admins.get(0);
 		}
@@ -104,7 +105,7 @@ public class AdminDAOImpl extends ADAO<Integer, Admin> implements IAdminDAO {
 	@Override
 	public Admin findByName(String name) throws Exception {
 		// TODO Auto-generated method stub
-		List<Admin> admins=this.afindByColumns(new String[]{"name"}, new Object[]{name,0,10});
+		List<Admin> admins=this.afindByColumns(new String[]{"name"}, new Object[]{name,0,10},"id",EnumConstant.Order_type_ASEC);
 		if(admins.size()>0){
 			return admins.get(0);
 		}

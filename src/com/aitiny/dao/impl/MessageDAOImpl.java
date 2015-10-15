@@ -9,6 +9,7 @@ import com.aitiny.dao.ADAO;
 import com.aitiny.dao.IMessageDAO;
 import com.aitiny.dao.vo.Message;
 import com.aitiny.exception.MethodNotRealize;
+import com.aitiny.util.EnumConstant;
 @Repository("messageDAO")
 public class MessageDAOImpl extends ADAO<Integer, Message> implements IMessageDAO {
 	@Override
@@ -57,7 +58,7 @@ public class MessageDAOImpl extends ADAO<Integer, Message> implements IMessageDA
 	@Override
 	public List<Message> findAll(Integer uid, Integer fuid,
 			Integer currentPage, Integer lineSize) throws Exception {
-		return this.afindByColumns(new  String[]{"fromUser","toUser"}, new Object[]{uid,fuid,currentPage,lineSize});
+		return this.afindByColumns(new  String[]{"fromUser","toUser"}, new Object[]{uid,fuid,(currentPage-1)*lineSize,lineSize},"time",EnumConstant.Order_type_DESC);
 	}
 	@Override
 	public Message findById(Integer id) throws Exception {
@@ -72,7 +73,7 @@ public class MessageDAOImpl extends ADAO<Integer, Message> implements IMessageDA
 	public List<Message> findAll(Integer uid, Integer currentPage,
 			Integer lineSize) throws Exception {
 
-		return this.afindByColumns(new String[]{"toUser"}, new Object[]{uid,currentPage,lineSize});
+		return this.afindByColumns(new String[]{"toUser"}, new Object[]{uid,(currentPage-1)*lineSize,lineSize},"time",EnumConstant.Order_type_DESC);
 	}
 	@Override
 	public List<Message> findAll() throws Exception {

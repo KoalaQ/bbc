@@ -52,7 +52,7 @@ IMessageDAO messageDAO=(IMessageDAO) ctx.getBean("messageDAO");
 	@Test
 	public void testFindAll() {
 	try {
-		System.out.println(this.messageDAO.findAll(1, 2, 1, 10));
+		System.out.println(this.messageDAO.findAll(1, 1, 1, 10));
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

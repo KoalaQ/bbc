@@ -11,6 +11,7 @@ import com.aitiny.dao.ADAO;
 import com.aitiny.dao.IValidateDAO;
 import com.aitiny.dao.vo.Validate;
 import com.aitiny.exception.MethodNotRealize;
+import com.aitiny.util.EnumConstant;
 @Repository("validateDAO")
 public class ValidateDAOImpl extends ADAO<Integer, Validate> implements IValidateDAO {
 	@Override
@@ -47,7 +48,7 @@ public class ValidateDAOImpl extends ADAO<Integer, Validate> implements IValidat
 	}
 	@Override
 	public Validate findByUUID(String uuid) throws Exception {
-		List<Validate> validates=this.afindByColumns(new String[]{"uuid"}, new Object[]{uuid,1,10});
+		List<Validate> validates=this.afindByColumns(new String[]{"uuid"}, new Object[]{uuid,0,10},"id",EnumConstant.Order_type_ASEC);
 		if(validates.size()<0){
 			return null;
 		}
@@ -56,8 +57,8 @@ public class ValidateDAOImpl extends ADAO<Integer, Validate> implements IValidat
 	@Override
 	public Validate findByAidAndType(Integer aid, Integer type)
 			throws Exception {		
-		List<Validate> validates=this.afindByColumns(new String[]{"aid","type"}, new Object[]{aid,type,1,10});
-		if(validates.size()<0){
+		List<Validate> validates=this.afindByColumns(new String[]{"aid","type"}, new Object[]{aid,type,0,10},"id",EnumConstant.Order_type_ASEC);
+		if(validates.size()<=0){
 			return null;
 		}
 		return validates.get(0);
@@ -65,8 +66,8 @@ public class ValidateDAOImpl extends ADAO<Integer, Validate> implements IValidat
 	@Override
 	public Validate findByUidAndTpye(Integer uid, Integer type)
 			throws Exception {
-		List<Validate> validates=this.afindByColumns(new String[]{"uid","type"}, new Object[]{uid,type,1,10});
-		if(validates.size()<0){
+		List<Validate> validates=this.afindByColumns(new String[]{"uid","type"}, new Object[]{uid,type,0,10},"id",EnumConstant.Order_type_ASEC);
+		if(validates.size()<=0){
 			return null;
 		}
 		return validates.get(0);

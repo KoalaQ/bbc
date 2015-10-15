@@ -111,22 +111,27 @@ public abstract class ADAO<K,V>{
 			return false;
 		}
 		/**
-		 *  多个columns对应的values进行查询找到数据，有分页,values后两个数据第一个为page,第二个为lineSize
+		 *  多个columns对应的values进行查询找到数据，有分页,values后两个数据第一个为page ->(currentPage-1)*lineSize,第二个为lineSize
 		 * @param columns
 		 * @param values
 		 * @return 返回List，如果没有数据size()=0
 		 * @throws Exception
 		 */
-		protected List<V> afindByColumns(String [] columns,Object[] values)throws Exception{
+		protected List<V> afindByColumns(String [] columns,Object[] values, String orderColumn,
+				Integer orderType)throws Exception{
 			if(columns.length+2!=values.length)
 			{
 				return  new ArrayList<V>();
 			}
+			String type="";
+			if(orderType==EnumConstant.Order_type_DESC){
+				type="DESC";
+			}
 			String sql="";
 			StringBuilder sb=new StringBuilder();
 			sb.append("SELECT *   FROM "+table+"  WHERE  ");
-			sb.append(sqlString(columns));
-			sb.append("  LIMIT  ?,? ");
+			sb.append(sqlAndString(columns));
+			sb.append("  ORDER BY   "+orderColumn+" "+type+"  LIMIT  ?,? ");
 			sql=sb.toString();
 		//	System.out.println(sql+","+values[0]+values[1]+values[2]);
 			RowMapper<V> rowMapper=new BeanPropertyRowMapper<>(cls);
@@ -155,8 +160,8 @@ public abstract class ADAO<K,V>{
 			}
 			String sql="";
 			StringBuilder sb=new StringBuilder();
-			sb.append("SELET COUNT(*)   FROM "+table+"  WHERE  ");
-			sb.append(sqlString(columns));
+			sb.append("SELECT COUNT(*)   FROM "+table+"  WHERE  ");
+			sb.append(sqlAndString(columns));
 			sql=sb.toString();	
 			return 	jdbcTemplate.queryForObject(sql, values, Integer.class);
 		}
@@ -306,6 +311,31 @@ public abstract class ADAO<K,V>{
 				}
 			}
 			return sb.toString();
+		}
+		/**
+		 * 给column后拼接为 columns[0]=? and columns[1]= ? and ....形式。如果columns为空则返回一个空格 “ ”。
+		 * @param columns
+		 * @return
+		 */
+		private String sqlAndString(String[] columns){
+			StringBuilder sb=new StringBuilder();
+			for(int i=0;i<columns.length;i++){	
+				if(columns[i].equalsIgnoreCase(keyName)){
+					return " ";
+				}
+				sb.append("  "+columns[i]+"=?  ");
+				if(i<columns.length-1){
+					sb.append(" AND  ");
+				}
+			}
+			return sb.toString();
+		}
+		/**
+		 * 拓展使用
+		 * @return
+		 */
+		protected JdbcTemplate getJdbcTemplate() {
+			return jdbcTemplate;
 		}
 
 }

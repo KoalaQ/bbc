@@ -1,7 +1,6 @@
 package com.aitiny.service.impl;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,7 @@ public class LogServiceImpl extends AService<Log> implements ILogService {
 	@Override
 	public boolean insert(Log log) throws Exception {
 		// TODO Auto-generated method stub
+		log.setTime(new Date());
 		return logDAO.doCreate(log);
 	}
 

@@ -13,6 +13,7 @@ import com.aitiny.dao.vo.User;
 import com.aitiny.dao.vo.Validate;
 import com.aitiny.util.BeanToObjectUtil;
 import com.aitiny.util.Encode;
+import com.aitiny.util.EnumConstant;
 
 @Repository("userDAO")
 public class UserDAOImpl  extends ADAO<Integer,User> implements IUserDAO{
@@ -80,8 +81,8 @@ public class UserDAOImpl  extends ADAO<Integer,User> implements IUserDAO{
 		public User findByEmail(String email) throws Exception {
 			// TODO Auto-generated method stub
 		
-			List<User> user=this.afindByColumns(new String[]{"email"}, new Object[]{email,1,10});
-			if(user.size()<0){
+			List<User> user=this.afindByColumns(new String[]{"email"}, new Object[]{email,0,10},"id",EnumConstant.Order_type_ASEC);
+			if(user.size()<=0){
 				return null;
 			}
 			return user.get(0);
@@ -89,8 +90,8 @@ public class UserDAOImpl  extends ADAO<Integer,User> implements IUserDAO{
 
 
 		public User findByNickName(String nickName) throws Exception {
-			List<User> user=this.afindByColumns(new String[]{"nickName"}, new Object[]{nickName,1,10});
-			if(user.size()<0){
+			List<User> user=this.afindByColumns(new String[]{"nickName"}, new Object[]{nickName,0,10},"id",EnumConstant.Order_type_ASEC);
+			if(user.size()<=0){
 				return null;
 			}
 			return user.get(0);

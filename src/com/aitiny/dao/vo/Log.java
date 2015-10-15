@@ -16,12 +16,11 @@ public class Log implements Serializable {
 	}
 	
 	
-	public Log(Integer aid, Integer uid, String content, Date time, String name) {
+	public Log(Integer aid, Integer uid, String content,  String name) {
 		super();
 		this.aid = aid;
 		this.uid = uid;
 		this.content = content;
-		this.time = time;
 		this.name = name;
 	}
 

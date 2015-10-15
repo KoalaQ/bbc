@@ -15,7 +15,7 @@ public class ILogDAOTest {
 	ILogDAO logDAO=(ILogDAO) ctx.getBean("logDAO");
 	@Test
 	public void testDoCreate() {
-		Log log=new Log(1, 2, "test", new Date(), "admin");
+		Log log=new Log(1, 2, "test", "admin");
 		try {
 			System.out.println(this.logDAO.doCreate(log));
 		} catch (Exception e) {
