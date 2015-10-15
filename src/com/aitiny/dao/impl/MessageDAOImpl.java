@@ -51,6 +51,11 @@ public class MessageDAOImpl extends ADAO<Integer, Message> implements IMessageDA
 		return this.adoRemoveByTime(time);
 	}
 	@Override
+	public Message findById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.afindByKey(id);
+	}
+	@Override
 	public Integer getAllCount(Integer uid, Integer fuid) throws Exception {
 		// TODO Auto-generated method stub
 		return this.afindByColumnsCounts(new String[]{"fromUser", "toUser"}, new Object[]{uid,fuid});
@@ -59,11 +64,6 @@ public class MessageDAOImpl extends ADAO<Integer, Message> implements IMessageDA
 	public List<Message> findAll(Integer uid, Integer fuid,
 			Integer currentPage, Integer lineSize) throws Exception {
 		return this.afindByColumns(new  String[]{"fromUser","toUser"}, new Object[]{uid,fuid,(currentPage-1)*lineSize,lineSize},"time",EnumConstant.Order_type_DESC);
-	}
-	@Override
-	public Message findById(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return this.afindByKey(id);
 	}
 	@Override
 	public Integer getAllCount(Integer uid) throws Exception {

@@ -10,7 +10,7 @@ public class User implements Serializable {
 	private String password;
 	private String nickName;
 	private String photoPath;
-	private Integer available;
+	private Integer status;
 	private Integer vantages;
 	private Integer viewcount;
 	private Integer postcount;
@@ -19,13 +19,30 @@ public class User implements Serializable {
 	private Integer concerncount;
 	private Integer theme;
 	private Date regtime;
-	
+	private String uuid;
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public User( String email, String password, String nickName,
-			String photoPath, Integer available, Integer vantages,
+	
+	public User(String email, String password, String nickName) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.nickName = nickName;
+	}
+
+
+	public User(String nickName, String photoPath, Integer theme) {
+		super();
+		this.nickName = nickName;
+		this.photoPath = photoPath;
+		this.theme = theme;
+	}
+
+
+	public User(String email, String password, String nickName,
+			String photoPath, Integer status, Integer vantages,
 			Integer viewcount, Integer postcount, Integer grade,
 			Integer fanscount, Integer concerncount, Integer theme, Date regtime) {
 		super();
@@ -33,7 +50,7 @@ public class User implements Serializable {
 		this.password = password;
 		this.nickName = nickName;
 		this.photoPath = photoPath;
-		this.available = available;
+		this.status = status;
 		this.vantages = vantages;
 		this.viewcount = viewcount;
 		this.postcount = postcount;
@@ -44,18 +61,34 @@ public class User implements Serializable {
 		this.regtime = regtime;
 	}
 
-	public Integer getId() {
-		return id;
-	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password
 				+ ", nickName=" + nickName + ", photoPath=" + photoPath
-				+ ", available=" + available + ", vantages=" + vantages
+				+ ", status=" + status + ", vantages=" + vantages
 				+ ", viewcount=" + viewcount + ", postcount=" + postcount
 				+ ", grade=" + grade + ", fanscount=" + fanscount
 				+ ", concerncount=" + concerncount + ", theme=" + theme
-				+ ", regtime=" + regtime + "]";
+				+ ", regtime=" + regtime + ", uuid=" + uuid + "]";
+	}
+
+
+	public String getUuid() {
+		return uuid;
+	}
+
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
+
+	public Integer getId() {
+		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
@@ -84,12 +117,7 @@ public class User implements Serializable {
 	public void setPhotoPath(String photoPath) {
 		this.photoPath = photoPath;
 	}
-	public Integer getAvailable() {
-		return available;
-	}
-	public void setAvailable(Integer available) {
-		this.available = available;
-	}
+
 	public Integer getVantages() {
 		return vantages;
 	}
@@ -137,6 +165,14 @@ public class User implements Serializable {
 	}
 	public void setRegtime(Date regtime) {
 		this.regtime = regtime;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	
 	

@@ -117,7 +117,7 @@ public abstract class ADAO<K,V>{
 		 * @return 返回List，如果没有数据size()=0
 		 * @throws Exception
 		 */
-		protected List<V> afindByColumns(String [] columns,Object[] values, String orderColumn,
+		public List<V> afindByColumns(String [] columns,Object[] values, String orderColumn,
 				Integer orderType)throws Exception{
 			if(columns.length+2!=values.length)
 			{
@@ -153,7 +153,7 @@ public abstract class ADAO<K,V>{
 		 * @return
 		 * @throws Exception
 		 */
-		protected Integer afindByColumnsCounts(String [] columns,Object[] values)throws Exception{
+		public Integer afindByColumnsCounts(String [] columns,Object[] values)throws Exception{
 			if(columns.length!=values.length)
 			{
 				return  0;

@@ -42,9 +42,10 @@ public class UserDAOImpl  extends ADAO<Integer,User> implements IUserDAO{
 			// TODO Auto-generated method stub
 //		    通过类的全插入，不对id进行插入。
 //				使用BeanToObjectUtil工具类获取属性值。由于数据库有默认参数。故不适用，仅练习使用
-				String sql="UPDATE  user SET email=?,password=?,nickName=?,photoPath=?,available=?,vantages=?,viewcount=?,postcount=?,grade=?,fanscount=?,concerncount=?,theme=?,regtime=?  "
+				String sql="UPDATE  user SET nickName=?,photoPath=?,theme=?  "
 						+ " WHERE id="+vo.getId();
-				Object[] params=BeanToObjectUtil.getFiledValues(vo);
+			//	Object[] params=BeanToObjectUtil.getFiledValues(vo);
+				Object[] params=new Object[]{vo.getNickName(),vo.getPhotoPath(),vo.getTheme()};
 						if(jdbcTemplate.update(sql, params)>0){
 					return true;
 				}
@@ -72,7 +73,7 @@ public class UserDAOImpl  extends ADAO<Integer,User> implements IUserDAO{
 			}
 			sb.append(" WHERE  "+keyName+"="+key);
 			sql=sb.toString();
-			System.out.println(sql);	
+			//System.out.println(sql);	
 			if(jdbcTemplate.update(sql, values)>0){
 				return true;
 				}

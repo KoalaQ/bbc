@@ -75,6 +75,20 @@ public class AdminDAOImpl extends ADAO<Integer, Admin> implements IAdminDAO {
 	}
 
 	@Override
+	public boolean doUpdatePassword(Integer id, String password)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoUpdate(id, new String[]{"password"}, new Object[]{password});
+	}
+
+	@Override
+	public boolean doUpdatePhoto(Integer id, String photoPath)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoUpdate(id, new String[]{"photoPath"}, new Object[]{photoPath});
+	}
+
+	@Override
 	public boolean doRemove(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return this.adoRemoveByKey(id);

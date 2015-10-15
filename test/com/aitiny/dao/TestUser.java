@@ -58,7 +58,7 @@ public class TestUser {
 	@Test
 	public void testdoCreate(){
 		try {
-			User vo=new User( "test7@qq.com", "123", "kit", "c:/1jpg", 0, 0, 0, 0, 0, 0, 0, 0,new Date());
+			User vo=new User( "test7@qq.com", "123", "kit");
 			System.out.println(userDAO.doCreate(vo));
 			
 			

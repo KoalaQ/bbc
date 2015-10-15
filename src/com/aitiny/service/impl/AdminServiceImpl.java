@@ -72,7 +72,7 @@ public class AdminServiceImpl extends AService<Admin> implements IAdminService {
 	@Override
 	public boolean changePhoto(Admin admin) throws Exception {
 		// TODO Auto-generated method stub
-		return this.adminDAO.doUpdate(admin.getId(), new String[]{"photoPath"}, new Object[]{admin.getPhotoPath()});
+		return this.adminDAO.doUpdatePhoto(admin.getId(), admin.getPhotoPath());
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class AdminServiceImpl extends AService<Admin> implements IAdminService {
 		}
 		Validate validate=this.validateDAO.findByAidAndType(admin.getId(), EnumConstant.Validate_type_code);
 		if(validate.getValicode().equals(validateInfo)){
-			if( this.adminDAO.doUpdate(admin.getId(), new String[]{"password"}, new Object[]{admin.getPassword()})){
+			if( this.adminDAO.doUpdatePassword(admin.getId(), admin.getPassword())){
 				validateDAO.doRemove(validate.getId());
 				return true;
 			}

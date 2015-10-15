@@ -1,4 +1,4 @@
-package com.aitiny.util;
+package com.aitiny.service.pushSupport;
 
 import java.io.File;
 

@@ -75,6 +75,9 @@ public interface IDAO<K,V> {
 	 * @throws Exception
 	 */
 	public V findById(K id)throws Exception;
+	public List<V> afindByColumns(String [] columns,Object[] values, String orderColumn,
+			Integer orderType)throws Exception;
+	public Integer afindByColumnsCounts(String [] columns,Object[] values)throws Exception;
 	/**
 	 *  查询所以数据
 	 * @return 有数据返回list,没数据返回lise.size()=0
