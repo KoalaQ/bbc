@@ -13,7 +13,7 @@ public class Post implements Serializable {
 	private String content;
 	private Date publishTime;
 	private Integer viewcount;
-	private Integer like;
+	private Integer likes;
 	private Integer status;
 	private String files;
 	private  String summary;
@@ -57,7 +57,7 @@ public class Post implements Serializable {
 		return "Post [id=" + id + ", bid=" + bid + ", uid=" + uid + ", aid="
 				+ aid + ", name=" + name + ", content=" + content
 				+ ", publishTime=" + publishTime + ", viewcount=" + viewcount
-				+ ", like=" + like + ", status=" + status + ", files=" + files
+				+ ", likes=" + likes + ", status=" + status + ", files=" + files
 				+ ", summary=" + summary + ", tag=" + tag + "]";
 	}
 
@@ -103,12 +103,15 @@ public class Post implements Serializable {
 	public void setViewcount(Integer viewcount) {
 		this.viewcount = viewcount;
 	}
-	public Integer getLike() {
-		return like;
+
+	public Integer getLikes() {
+		return likes;
 	}
-	public void setLike(Integer like) {
-		this.like = like;
+
+	public void setLikes(Integer likes) {
+		this.likes = likes;
 	}
+
 	public Integer getStatus() {
 		return status;
 	}

@@ -17,6 +17,7 @@ public class PostDAOImpl extends ADAO<Integer, Post> implements IPostDAO {
 		this.keyName="id";
 		this.table="post";
 	}
+
 	@Override
 	public boolean doCreate(Post vo) throws Exception {
 		// TODO Auto-generated method stub
@@ -30,8 +31,12 @@ public class PostDAOImpl extends ADAO<Integer, Post> implements IPostDAO {
 
 	@Override
 	public boolean doUpdate(Post vo) throws Exception {
-		// TODO Auto-generated method stub
-		throw new MethodNotRealize("方法未实现");
+		String sql="UPDATE  post SET name=?,content=?,publishTime=?,files=?,summary=?,tag=?  WHERE id=? ";
+		Object[] params=new Object[]{vo.getName(),vo.getContent(),vo.getPublishTime(),vo.getFiles(),vo.getSummary(),vo.getTag(),vo.getId()};
+		if(this.jdbcTemplate.update(sql, params)>0){
+			return true;
+		}
+		return false;
 	}
 	@Override
 	public boolean doUpdate(Integer id, String[] Columns, Object[] values)
@@ -72,6 +77,8 @@ public class PostDAOImpl extends ADAO<Integer, Post> implements IPostDAO {
 		// TODO Auto-generated method stub
 		return this.agetPagingCount(column, keyWord);
 	}
+
+
 
 	
 

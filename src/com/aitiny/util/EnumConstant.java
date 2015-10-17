@@ -21,4 +21,9 @@ public class EnumConstant {
 		public final static int User_Status_unknow=6;//用户不存在
 		public final static int User_Wrong_password=7;
 		
+		public final static int Post_Status_normal=0;
+		public final static int Post_Status_check=1;
+		public final static int Post_Status_recycle=2;
+		public final static int Post_Status_delete=3;
+		
 }

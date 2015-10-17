@@ -8,9 +8,12 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
 
-public class MailUtil {
-	public static void sendMail(String title,String content,String to){
+import com.aitiny.service.IPushSupport;
+@Service("mailPushSupport")
+public class MailSupport implements IPushSupport{
+	public  boolean sendMail(String title,String content,String to){
 		JavaMailSenderImpl senderImpl = new JavaMailSenderImpl();
 
 		// 设定mail server
@@ -32,14 +35,16 @@ public class MailUtil {
 			messageHelper.setSubject(title);
 			// true 表示启动HTML格式的邮件
 			messageHelper.setText(content, true);
+			senderImpl.send(mailMessage);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
-		
+		return true;
 
-		FileSystemResource file1 = new FileSystemResource(new File("d:/pp.jpeg"));
-		FileSystemResource file2 = new FileSystemResource(new File("d:/读书.txt"));
+		//FileSystemResource file1 = new FileSystemResource(new File("d:/pp.jpeg"));
+		//FileSystemResource file2 = new FileSystemResource(new File("d:/读书.txt"));
 		// 添加2个附件
 //		messageHelper.addAttachment("pp.jpg", file1);
 //		
@@ -51,6 +56,15 @@ public class MailUtil {
 //			throw new MessagingException();
 //		}
 		// 发送邮件
-		senderImpl.send(mailMessage);
+	
 	}
+
+	@Override
+	public boolean pushMessage(String to, String message) {
+		// TODO Auto-generated method stub
+		System.out.println("MailSupport.pushMessage:"+to+","+message);
+		return this.sendMail("验证邮件", message, to);
+	}
+
+
 }

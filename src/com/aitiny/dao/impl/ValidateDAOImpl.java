@@ -1,5 +1,6 @@
 package com.aitiny.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -47,6 +48,16 @@ public class ValidateDAOImpl extends ADAO<Integer, Validate> implements IValidat
 		throw new MethodNotRealize("该方法未实现");
 	}
 	@Override
+	public boolean doRemove(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoRemoveByKey(id);
+	}
+	@Override
+	public boolean doRemove(Date time) throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoRemoveByTime(time);
+	}
+	@Override
 	public Validate findByUUID(String uuid) throws Exception {
 		List<Validate> validates=this.afindByColumns(new String[]{"uuid"}, new Object[]{uuid,0,10},"id",EnumConstant.Order_type_ASEC);
 		if(validates.size()<0){
@@ -71,11 +82,6 @@ public class ValidateDAOImpl extends ADAO<Integer, Validate> implements IValidat
 			return null;
 		}
 		return validates.get(0);
-	}
-	@Override
-	public boolean doRemove(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return this.adoRemoveByKey(id);
 	}
 	@Override
 	public Validate findById(Integer id) throws Exception {

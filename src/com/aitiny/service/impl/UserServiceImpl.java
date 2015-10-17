@@ -1,25 +1,43 @@
 package com.aitiny.service.impl;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.aitiny.dao.ICollectionsDAO;
+import com.aitiny.dao.IFansDAO;
 import com.aitiny.dao.IUserDAO;
 import com.aitiny.dao.IValidateDAO;
+import com.aitiny.dao.vo.Collections;
+import com.aitiny.dao.vo.Fans;
 import com.aitiny.dao.vo.User;
 import com.aitiny.dao.vo.Validate;
+import com.aitiny.service.AService;
 import com.aitiny.service.IUserService;
 import com.aitiny.util.Encode;
 import com.aitiny.util.EnumConstant;
 import com.aitiny.util.StringUtil;
 @Service("userService")
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl extends AService<User> implements IUserService {
 	@Autowired
 	@Qualifier("userDAO")
 	private IUserDAO userDAO; 
 	@Autowired
 	@Qualifier("validateDAO")
 	private IValidateDAO validateDAO;
+	@Autowired
+	@Qualifier("fansDAO")
+	private IFansDAO fansDAO;
+	@Autowired
+	@Qualifier("collectionsDAO")
+	private ICollectionsDAO collectionsDAO;
+	@Override
+	protected void initDAO() {
+		// TODO Auto-generated method stub
+		this.mapDAO=this.userDAO;
+	}
 	@Override
 	public int login(User user) throws Exception {
 		// TODO Auto-generated method stub
@@ -110,5 +128,67 @@ public class UserServiceImpl implements IUserService {
 		return this.userDAO.doUpdate(id, new String[]{"vantages"},
 				new Object[]{this.userDAO.findById(id).getVantages()+vantages});
 	}
+
+	@Override
+	public boolean checkEmail(User user) throws Exception {
+		// TODO Auto-generated method stub
+		return this.userDAO.doUpdate(user.getId(), new String[]{"status"}, new Object[]{EnumConstant.Usre_status_verified});
+	}
+
+	@Override
+	public User findUser(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, Object> listUser(String column, String keyWord,
+			int currentPage, int lineSize, String orderColumn, int orderType)
+			throws Exception {
+		// TODO Auto-generated method stub
+		this.setMapDAO(userDAO);
+		return this.listOrder(column, keyWord, currentPage, lineSize, orderColumn, orderType);
+	}
+
+	@Override
+	public boolean addFans(Fans fans) throws Exception {
+		// TODO Auto-generated method stub
+		if(this.fansDAO.doCreate(fans)){
+			this.userDAO.doUpdate(fans.getUid(), new String[]{"fanscount"} , new Object[]{this.userDAO.findById(fans.getUid()).getFanscount()+1});
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean deleteFans(Fans fans) throws Exception {
+		// TODO Auto-generated method stub
+		return this.fansDAO.doRemove(fans.getUid(),fans.getFuid());
+	}
+	@Override
+	public Map<String, Object> listFans(String column, String keyWord,
+			int currentPage, int lineSize) throws Exception {
+		// TODO Auto-generated method stub
+		this.setMapDAO(fansDAO);
+		return this.list(column, keyWord, currentPage, lineSize);
+	}
+	@Override
+	public boolean addCollect(Collections coll) throws Exception {
+		// TODO Auto-generated method stub
+		return this.collectionsDAO.doCreate(coll);
+	}
+	@Override
+	public boolean deleteCollect(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.collectionsDAO.doRemove(id);
+	}
+	@Override
+	public Map<String, Object> listCollections(String column, String keyWord,
+			int currentPage, int lineSize) throws Exception {
+		// TODO Auto-generated method stub
+		this.setMapDAO(collectionsDAO);
+		return this.list(column, keyWord, currentPage, lineSize);
+	}
+
+	
 
 }

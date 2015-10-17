@@ -36,7 +36,12 @@ public class IFansDAOTest {
 
 	@Test
 	public void testDoRemove() {
-		fail("Not yet implemented");
+		try {
+			this.fansDAO.doRemove(1, 1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test

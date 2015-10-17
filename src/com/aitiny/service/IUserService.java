@@ -1,5 +1,9 @@
 package com.aitiny.service;
 
+import java.util.Map;
+
+import com.aitiny.dao.vo.Collections;
+import com.aitiny.dao.vo.Fans;
 import com.aitiny.dao.vo.User;
 
 public interface IUserService {
@@ -53,6 +57,78 @@ public interface IUserService {
 	 * @throws Exception
 	 */
 	public boolean addVantages(int id,int vantages )throws Exception;
-
-
+	/**
+	 * 更改邮箱验证状态为已验证
+	 * @return
+	 * @throws Exception
+	 */
+	 public boolean checkEmail(User user)throws Exception;
+	 /**
+	  * 查找用户
+	  * @param id
+	  * @return
+	  * @throws Exception
+	  */
+	 public User findUser(int id)throws Exception;
+		/**
+		 * 
+		 * @param column
+		 * @param keyWord
+		 * @param currentPage
+		 * @param lineSize
+		 * @param orderColumn
+		 * @param orderType
+		 * @return该方法会返回两类数据：List<User>集合，Integer统计结果，所以使用Map保存，Map存放规则
+	 *         <li> key=all：保存的是findAll()方法返回的List集合
+	 *         <li> key=count: 保存的是getAllCount()方法的Integer数据
+		 * @throws Exception
+		 */
+		public Map<String, Object> listUser(String column, String keyWord,int currentPage,int lineSize,
+				String orderColumn,int orderType)throws Exception;
+		/**
+		 * 添加粉丝。自己是fuid
+		 * @param fans
+		 * @return
+		 * @throws Exception
+		 */
+		public boolean addFans(Fans fans)throws Exception;
+		/**
+		 * 删除粉丝。删除自己关注的人，
+		 * @param fans
+		 * @return
+		 * @throws Exception
+		 */
+		public boolean deleteFans(Fans fans)throws Exception;
+		/**
+		 * 
+		 * @param column
+		 * @param keyWord
+		 * @param currentPage
+		 * @param lineSize
+		 * @param orderColumn
+		 * @param orderType
+		 * @return该方法会返回两类数据：List<User>集合，Integer统计结果，所以使用Map保存，Map存放规则
+	 *         <li> key=all：保存的是findAll()方法返回的List集合
+	 *         <li> key=count: 保存的是getAllCount()方法的Integer数据
+		 * @throws Exception
+		 */
+		public Map<String, Object> listFans(String column, String keyWord,int currentPage,int lineSize)throws Exception;
+		public boolean  addCollect(Collections coll)throws Exception;
+		public boolean deleteCollect(int id)throws Exception;
+		/**
+		 * 
+		 * @param column
+		 * @param keyWord
+		 * @param currentPage
+		 * @param lineSize
+		 * @param orderColumn
+		 * @param orderType
+		 * @return该方法会返回两类数据：List<User>集合，Integer统计结果，所以使用Map保存，Map存放规则
+	 *         <li> key=all：保存的是findAll()方法返回的List集合
+	 *         <li> key=count: 保存的是getAllCount()方法的Integer数据
+		 * @throws Exception
+		 */
+		public Map<String, Object> listCollections(String column, String keyWord,int currentPage,int lineSize)throws Exception;
+		
+		
 }

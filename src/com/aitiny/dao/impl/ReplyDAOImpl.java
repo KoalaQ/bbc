@@ -46,6 +46,11 @@ public class ReplyDAOImpl extends ADAO<Integer, Reply> implements IReplyDAO {
 		return this.adoRemoveByKey(id);
 	}
 	@Override
+	public boolean doRemoveByPid(Integer pid) throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoRemoveByColumns(new String[]{"pid"}, new Object[]{pid});
+	}
+	@Override
 	public Reply findById(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return this.afindByKey(id);

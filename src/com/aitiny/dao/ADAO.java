@@ -86,8 +86,8 @@ public abstract class ADAO<K,V>{
 			}
 			String sql="";
 			StringBuilder sb=new StringBuilder();
-			sb.append("DELETE  FROM "+table+"  WHERE ");
-			sb.append(sqlString(columns));
+			sb.append("DELETE  FROM "+table+"  ");
+			sb.append(sqlAndString(columns));
 			sql=sb.toString();
 			if(jdbcTemplate.update(sql,values)>0){
 				return true;
@@ -129,7 +129,7 @@ public abstract class ADAO<K,V>{
 			}
 			String sql="";
 			StringBuilder sb=new StringBuilder();
-			sb.append("SELECT *   FROM "+table+"  WHERE  ");
+			sb.append("SELECT *   FROM "+table+"   ");
 			sb.append(sqlAndString(columns));
 			sb.append("  ORDER BY   "+orderColumn+" "+type+"  LIMIT  ?,? ");
 			sql=sb.toString();
@@ -319,6 +319,9 @@ public abstract class ADAO<K,V>{
 		 */
 		private String sqlAndString(String[] columns){
 			StringBuilder sb=new StringBuilder();
+			if(columns.length>0){
+				sb.append(" WHERE ");
+			}
 			for(int i=0;i<columns.length;i++){	
 				if(columns[i].equalsIgnoreCase(keyName)){
 					return " ";

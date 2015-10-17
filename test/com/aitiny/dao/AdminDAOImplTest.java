@@ -19,13 +19,18 @@ public class AdminDAOImplTest {
 		admin.setNickName("nadmin5");
 		admin.setName("admin5");
 		try {
-			System.out.println(adminDAO.doCreate(admin));
+		//	System.out.println(adminDAO.doCreate(admin));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+
+
+	
+	
+	
 	@Test
 	public void testDoUpdateAdmin() {
 		Admin admin=new Admin();

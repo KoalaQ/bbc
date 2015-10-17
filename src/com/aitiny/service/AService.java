@@ -15,6 +15,7 @@ public abstract class AService<V> {
 	 */
 	@PostConstruct
 	protected abstract void initDAO();
+	@SuppressWarnings("unchecked")
 	protected V findById(int id) throws Exception{
 		return (V) findDAO.findById(id);
 	}
@@ -62,6 +63,18 @@ public abstract class AService<V> {
 		map.put("count", this.mapDAO.getAllCount(column, keyWord));
 		
 		return map;
+	}
+	protected IDAO getMapDAO() {
+		return mapDAO;
+	}
+	protected void setMapDAO(IDAO mapDAO) {
+		this.mapDAO = mapDAO;
+	}
+	protected IDAO getFindDAO() {
+		return findDAO;
+	}
+	protected void setFindDAO(IDAO findDAO) {
+		this.findDAO = findDAO;
 	}
 
 }

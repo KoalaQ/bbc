@@ -47,6 +47,11 @@ public class FansDAOImpl extends ADAO<Integer, Fans> implements IFansDAO {
 		return this.adoRemoveByKey(id);
 	}
 	@Override
+	public boolean doRemove(Integer uid, Integer fuid) throws Exception {
+		// TODO Auto-generated method stub
+		return this.adoRemoveByColumns(new String[]{"uid","fuid"}, new Object[]{uid,fuid});
+	}
+	@Override
 	public Fans findById(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return this.afindByKey(id);

@@ -1,11 +1,13 @@
 package com.aitiny.service;
 
-import static org.junit.Assert.fail;
+import java.util.Date;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.aitiny.dao.vo.Collections;
+import com.aitiny.dao.vo.Fans;
 import com.aitiny.dao.vo.User;
 
 public class IUserServiceTest {
@@ -109,6 +111,69 @@ public class IUserServiceTest {
 	public void testAddVantages() {
 		try {
 			System.out.println(this.userService.addVantages(1, 10));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testlistUser(){
+		try {
+			System.out.println(this.userService.listUser("id", "", 1, 10, "id", 1));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testaddFans(){
+		try {
+			System.out.println(this.userService.addFans(new Fans(12, 122, 1, new Date())));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testdeleteFans(){
+		try {
+			System.out.println(this.userService.deleteFans(new Fans(1, 12, 1, new Date())));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testlistFans(){
+		try {
+			System.out.println(this.userService.listFans("id", "", 2, 2));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testaddCollect(){
+		try {
+			System.out.println(this.userService.addCollect(new Collections(132, 123, new Date(), "FDSA", "test中文")));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testdeleteCollect(){
+		try {
+			System.out.println(this.userService.deleteCollect(1));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testlistCollections(){
+		try {
+			System.out.println(this.userService.listCollections("id", "", 1, 10));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
