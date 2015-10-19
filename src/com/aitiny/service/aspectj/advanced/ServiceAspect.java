@@ -58,11 +58,24 @@ public class ServiceAspect {
 			}
 		}
 	}
-	@AfterReturning(value="execution(*  com.aitiny.service.impl.AdminServiceImpl.addBoard(..))",returning="retVal")	
+	@AfterReturning(value="execution(*  com.aitiny.service.impl.BoardServiceImpl.addBoard(..))",returning="retVal")	
 	public void addBoard(JoinPoint jp,boolean retVal){
 		if(retVal){
 			Board board=(Board) jp.getArgs()[0];
 			Log log=new Log(board.getAid(), null, "添加board："+board.getName(), "添加board");
+			try {
+				logService.insert(log);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	@AfterReturning(value="execution(*  com.aitiny.service.impl.BoardServiceImpl.updateBoard(..))",returning="retVal")	
+	public void updateBoard(JoinPoint jp,boolean retVal){
+		if(retVal){
+			Board board=(Board) jp.getArgs()[0];
+			Log log=new Log(board.getAid(), null, "修改board："+board.getName(), "修改board");
 			try {
 				logService.insert(log);
 			} catch (Exception e) {

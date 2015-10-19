@@ -27,13 +27,9 @@ public class AdminServiceImpl extends AService<Admin> implements IAdminService {
 	@Autowired
 	@Qualifier("validateDAO")
 	private IValidateDAO validateDAO;
-	@Autowired
-	@Qualifier("boardDAO")
-	private IBoardDAO boardDAO;
+
 	@Override
 	protected void initDAO() {
-		// TODO Auto-generated method stub
-		this.mapDAO=boardDAO;
 	}
 	@Override
 	public boolean insert(Admin admin,Admin insertAdmin) throws Exception {
@@ -92,25 +88,7 @@ public class AdminServiceImpl extends AService<Admin> implements IAdminService {
 		return false;
 	}
 
-	@Override
-	public boolean addBoard(Board board) throws Exception {
-		// TODO Auto-generated method stub
-		return this.boardDAO.doCreate(board);
-	}
-
-	@Override
-	public boolean removeBoard(Board board) throws Exception {
-		// TODO Auto-generated method stub
-		throw new MethodNotRealize("该方法未实现");
-		//return this.boardDAO.doRemove(board.getAid());
-	}
-	@Override
-	public Map<String, Object> listBoards(String column, String keyWord,
-			int currentPage, int lineSize) throws Exception {
-		// TODO Auto-generated method stub
-		return this.list(column, keyWord, currentPage, lineSize);
-	}
-
+	
 
 
 

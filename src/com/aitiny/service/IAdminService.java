@@ -39,22 +39,7 @@ public interface IAdminService {
 		public boolean changePhoto(Admin admin)throws Exception;
 		public boolean changePassword(Admin admin,String validateInfo)throws Exception;
 		//public boolean ChangeUserPassword() throws Exception;
-		public boolean addBoard(Board board)throws Exception;
-		public boolean removeBoard(Board board)throws Exception;
-		/**
-		 * 模糊分页查询，emp表中的全部数据，查询时会调用IEmoDAO的两个操作方法<br>
-		 *   <li> findAll(column,keyWord,currentPage,lineSize)查询符合条件的分页数据，返回list
-		 *   <li> getAllCount(column,keyWord)统计返回的数据数量
-		 * @param column  模糊查询的字段
-		 * @param keyWord 模糊查询的关键字空字符串查询全部
-		 * @param currentPage  当前所在页
-		 * @param lineSize		每页的数据长度
-		 * @return 该方法会返回两类数据：List<V>集合，Integer统计结果，所以使用Map保存，Map存放规则
-		 *         <li> key=all：保存的是findAll()方法返回的List集合
-		 *         <li> key=count: 保存的是getAllCount()方法的Integer数据
-		 * @throws Exception
-		 */
-		public Map<String,Object> listBoards(String column,String keyWord,int currentPage,int lineSize)throws Exception;
+	
 		
 		
 		

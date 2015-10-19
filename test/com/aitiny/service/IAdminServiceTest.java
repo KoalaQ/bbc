@@ -113,33 +113,5 @@ public class IAdminServiceTest {
 		}
 	}
 
-	@Test
-	public void testAddBoard() {
-		Board board=new Board();
-		board.setName("java 程序设计");
-		board.setDescription("优秀的MVC框架");
-		board.setParentId(6);
-		board.setAid(1);
-		try {
-			System.out.println(adminService.addBoard(board));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-
-	@Test
-	public void testRemoveBoard() {
-		fail("Not yet implemented");
-	}
-	@Test
-	public void testlist() {
-		try {
-			System.out.println(adminService.listBoards("id", "1", 1, 3));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 }

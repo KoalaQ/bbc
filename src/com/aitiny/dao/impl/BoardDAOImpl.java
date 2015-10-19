@@ -31,8 +31,12 @@ public class BoardDAOImpl extends ADAO<Integer, Board> implements IBoardDAO {
 
 	@Override
 	public boolean doUpdate(Board vo) throws Exception {
-		// TODO Auto-generated method stub
-		throw new MethodNotRealize("方法未实现");
+		String sql = "UPDATE   board SET name=?,description=?,boardImg=?";
+		Object[] params=new Object[]{vo.getName(),vo.getDescription(),vo.getBoardImg()};
+		if(this.jdbcTemplate.update(sql,params)>0){
+			return true;
+		}
+		return false;
 	}
 	@Override
 	public boolean doUpdate(Integer id, String[] Columns, Object[] values)
