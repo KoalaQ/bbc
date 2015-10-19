@@ -20,6 +20,7 @@ public class IAdminServiceTest {
 //		System.out.println(log.getAid()+","+log.getUid());
 		Admin admin=new Admin();
 		System.out.println(admin.getEmail());
+		admin.setId(1);
 		admin.setEmail("admin10@qq.com");
 		admin.setPassword("123456");
 		admin.setNickName("nadmin10");
@@ -27,6 +28,7 @@ public class IAdminServiceTest {
 		admin.setLevel(EnumConstant.Admin_Level_High);
 		Admin insertAdmin=new Admin();
 		System.out.println(admin.getEmail());
+		insertAdmin.setId(2);
 		insertAdmin.setEmail("admin10@qq.com");
 		insertAdmin.setPassword("123456");
 		insertAdmin.setNickName("nadmin10");
@@ -43,9 +45,9 @@ public class IAdminServiceTest {
 	public void testChangeLevel() {
 		Admin admin=new Admin();
 		admin.setLevel(EnumConstant.Admin_Level_High);
-		
+		admin.setId(1);
 		Admin insertAdmin=new Admin();
-		System.out.println(admin.getEmail());
+		//System.out.println(admin.getEmail());
 		insertAdmin.setId(1);
 		insertAdmin.setLevel(3);
 		try {

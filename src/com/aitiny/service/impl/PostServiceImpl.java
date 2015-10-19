@@ -1,7 +1,9 @@
 package com.aitiny.service.impl;
 
+import java.util.HashMap;
 import java.util.Map;
 
+import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -61,10 +63,13 @@ public class PostServiceImpl extends AService<Post> implements IPostService {
 
 	@Override
 	public Map<String, Object> listPost(String column, String keyWord,
-			int currentPage, int lineSize, String orderColumn, int orderType)
+			int currentPage, int lineSize, String orderColumn, int orderType,int status)
 			throws Exception {
-		// TODO Auto-generated method stub
-		return this.listOrder(column, keyWord, currentPage, lineSize, orderColumn, orderType);
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("all", this.postDAO.findAllAvailable(column, keyWord, currentPage, lineSize, orderColumn, orderType, status));
+		map.put("count", this.postDAO.getAllCountAvailable(orderColumn, keyWord, status));
+		
+		return map;
 	}
 
 	@Override

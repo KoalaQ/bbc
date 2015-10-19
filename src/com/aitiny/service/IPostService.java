@@ -53,7 +53,7 @@ public interface IPostService {
 		 * @throws Exception
 		 */
 		public Map<String, Object> listPost(String column, String keyWord,int currentPage,int lineSize,
-				String orderColumn,int orderType)throws Exception;
+				String orderColumn,int orderType,int status)throws Exception;
 
 		/**
 		 * 添加评论
@@ -69,5 +69,7 @@ public interface IPostService {
 		 * 2：当用户点击评论数目时候使用ajax加载评论。根评论和评论的回复是否分页。。。？
 		 * 3：留到实现的时候在写
 		 */
+		
 		//public void findReply()throws Exception;
+		//public Map<String, Object> search(String keyWord,int currentPage,int lineSize)throws Exception;
 }

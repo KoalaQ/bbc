@@ -41,7 +41,7 @@ public class IPostServiceTest {
 	@Test
 	public void testRecycleBlog() {
 		try {
-			System.out.println(this.postService.recycleBlog(2));
+			System.out.println(this.postService.deleteBlog(6));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,7 +66,7 @@ public class IPostServiceTest {
 	@Test
 	public void testListPost() {
 	try {
-		System.out.println(this.postService.listPost("id", "", 2, 2, "id", 1));
+		System.out.println(this.postService.listPost("id", "", 2, 2, "id", 1,0));
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

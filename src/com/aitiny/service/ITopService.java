@@ -1,6 +1,9 @@
 package com.aitiny.service;
 
 import java.util.Date;
+import java.util.List;
+
+import com.aitiny.dao.vo.Post;
 
 /**
  * 暂时想到刷新和添加。10个top
@@ -19,13 +22,13 @@ public interface ITopService {
 		 * @return
 		 * @throws Exception
 		 */
-		public boolean viewTop(int topCounts)throws Exception;
+		public  List<Post> viewTop(int topCounts)throws Exception;
 			/**
 			 * 收藏的top
 			 * @return
 			 * @throws Exception
 			 */
-		public boolean likeTop(int topCounts)throws Exception;
+		public List<Post> likeTop(int topCounts)throws Exception;
 		
 		/**
 		 * 手动插入置顶的文章，
@@ -35,7 +38,7 @@ public interface ITopService {
 		 * @return
 		 * @throws Exception
 		 */
-		public boolean addToTop(int topNum,int pid,Date time)throws Exception;
+		public  boolean addToTop(int topNum,int pid,Date time)throws Exception;
 		/**
 		 * 将文章从置顶中移除
 		 * @param pid

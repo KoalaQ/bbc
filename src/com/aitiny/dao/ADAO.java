@@ -160,7 +160,7 @@ public abstract class ADAO<K,V>{
 			}
 			String sql="";
 			StringBuilder sb=new StringBuilder();
-			sb.append("SELECT COUNT(*)   FROM "+table+"  WHERE  ");
+			sb.append("SELECT COUNT(*)   FROM "+table+" ");
 			sb.append(sqlAndString(columns));
 			sql=sb.toString();	
 			return 	jdbcTemplate.queryForObject(sql, values, Integer.class);

@@ -17,7 +17,7 @@ public class IUserServiceTest {
 	public void testLogin() {
 		User user=new User();
 		user.setId(1);
-		user.setEmail("123@qq.com");
+		user.setEmail("1238@qq.com");
 		user.setPassword("123");
 		user.setUuid("fdsafas");
 		try {
@@ -73,7 +73,7 @@ public class IUserServiceTest {
 
 	@Test
 	public void testRegister() {
-		User user=new User("123@qq.com", "123", "1fdsa");
+		User user=new User("1238@qq.com", "123", "1fdggsa");
 		try {
 			System.out.println(this.userService.register(user));
 		} catch (Exception e) {
@@ -84,7 +84,7 @@ public class IUserServiceTest {
 
 	@Test
 	public void testChangePassword() {
-		User user=new User("fadfsf@qq.com", "fasdf", "1f1fdsa");
+		User user=new User("fadfsf@qq.com", "fas545df", "1f5451fdsa");
 		user.setId(1);
 		user.setPassword("fdasfsa");
 		try {

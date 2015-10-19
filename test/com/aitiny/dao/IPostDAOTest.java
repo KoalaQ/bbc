@@ -51,22 +51,42 @@ IPostDAO postDAO=(IPostDAO) ctx.getBean("postDAO");
 
 	@Test
 	public void testFindAll() {
-		fail("Not yet implemented");
+		try {
+			System.out.println(this.postDAO.findAllAvailable(1));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
 	public void testFindAllStringStringIntegerInteger() {
-		fail("Not yet implemented");
+		try {
+			System.out.println(this.postDAO.findAllAvailable("id", "", 2, 2, 0));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
 	public void testFindAllStringStringIntegerIntegerStringInteger() {
-		fail("Not yet implemented");
+		try {
+			System.out.println(this.postDAO.findAllAvailable("id", "", 1, 2,"id",1, 0));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
 	public void testGetAllCount() {
-		fail("Not yet implemented");
+		try {
+			System.out.println(this.postDAO.getAllCountAvailable("id", "", 0));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

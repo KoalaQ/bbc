@@ -103,15 +103,15 @@ public class TopServiceImpl implements ITopService {
 	}
 
 	@Override
-	public boolean viewTop(int topCounts) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+	public  List<Post> viewTop(int topCounts) throws Exception {
+		List<Post> viewMore =postDAO.afindByColumns(new String[]{}, new Object[]{0,topCounts}, "viewCount",EnumConstant .Order_type_DESC);	
+		return viewMore;
 	}
 
 	@Override
-	public boolean likeTop(int topCounts) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+	public  List<Post> likeTop(int topCounts) throws Exception {
+		List<Post> viewMore =postDAO.afindByColumns(new String[]{}, new Object[]{0,topCounts}, "likes",EnumConstant .Order_type_DESC);	
+		return viewMore;
 	}
 	
 }

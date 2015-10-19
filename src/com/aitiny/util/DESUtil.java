@@ -12,7 +12,7 @@ import sun.misc.BASE64Encoder;
 public class DESUtil {
 	//指定DES加密解密所用的密钥
 	private static Key key;
-	private static String KEY_STR="myKey";
+	private static String KEY_STR="my123Key";
 	
 	static{
 		try {
@@ -23,7 +23,7 @@ public class DESUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+}
 	//对字符串进行DES加密，返回BASE64编码的加密字符串
 	public static String getEncryptString(String str){
 		BASE64Encoder base64en=new BASE64Encoder();
@@ -55,9 +55,10 @@ public class DESUtil {
 		}
 	}
 	public static void main(String[] args) {
-		System.out.println(DESUtil.getEncryptString("1234"));
+		String str=	DESUtil.getEncryptString("LYDAI147258369");
+		System.out.println(str);
 		System.out.println(DESUtil.getEncryptString("root"));
-		System.out.println(DESUtil.getDecrytString(DESUtil.getEncryptString("123")));
+		//System.out.println(DESUtil.getDecrytString("WQOPPaEFNcs="));
 		
 	}
 	
