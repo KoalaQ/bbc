@@ -46,5 +46,8 @@ public interface ITopService {
 		 * @throws Exception
 		 */
 		public boolean removeTop(int pid)throws Exception;
+		
+		public List<Post> getTop()throws Exception;
+
 	
 }

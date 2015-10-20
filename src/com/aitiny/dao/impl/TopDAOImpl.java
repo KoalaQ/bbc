@@ -104,6 +104,7 @@ public class TopDAOImpl extends ADAO<Integer, Top> implements ITopDAO {
 		// TODO Auto-generated method stub
 		return this.agetPagingCount(column, keyWord);
 	}
+	
 
 
 

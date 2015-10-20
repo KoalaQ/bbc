@@ -20,7 +20,7 @@ public class TimedTaskService {
 	//
 	@Scheduled(cron = "0 0/15 * * * ?")
 	public void refreshTop(){
-		System.out.println("hello");
+		//System.out.println("hello");
 		try {
 			topService.refreshTop(10);
 		} catch (Exception e) {
@@ -31,7 +31,7 @@ public class TimedTaskService {
 	//每3个小时清理一次
 	@Scheduled(cron = "0 0 0/3 * * ?")
 	public void clearMessage(){
-		System.out.println("hello");
+		//System.out.println("hello");
 		try {
 			messageService.delete(new Date());
 		} catch (Exception e) {
@@ -42,7 +42,7 @@ public class TimedTaskService {
 	//每5分钟检查一次，当前时间的半小时前。所以会有一些小出入
 	@Scheduled(cron = "0 0/5 * * * ?")
 	public void clearValidate(){
-		System.out.println("hello");
+		//System.out.println("hello");
 		try {
 			validateService.remove(new Date(new Date().getTime()- 30*60*1000));
 		} catch (Exception e) {
@@ -51,6 +51,10 @@ public class TimedTaskService {
 		}
 	}
 	public void pushMessage(){
+		
+	}
+	
+	public void updatePostCounts(){
 		
 	}
 }

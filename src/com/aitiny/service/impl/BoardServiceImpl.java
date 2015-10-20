@@ -50,7 +50,11 @@ public class BoardServiceImpl implements IBoardService {
 	@Override
 	public List<Board> loadRootBoards() throws Exception{
 		// TODO Auto-generated method stub
-		return boardDAO.afindByColumns(new String[]{"parentId"}, new Object[]{0,0,100}, "id", EnumConstant.Order_type_ASEC);
+		List<Board> rootBoards= boardDAO.afindByColumns(new String[]{"parentId"}, new Object[]{0,0,100}, "id", EnumConstant.Order_type_ASEC);
+		for(Board board : rootBoards){
+			board.setBoards(boardDAO.afindByColumns(new String[]{"parentId"}, new Object[]{board.getId(),0,100}, "id", EnumConstant.Order_type_ASEC));
+		}
+		return rootBoards;
 		
 	}
 
@@ -60,7 +64,23 @@ public class BoardServiceImpl implements IBoardService {
 		return boardDAO.doUpdate(board);
 	}
 	
-	
+	@Override
+	public int getTodayPostsCount() throws Exception {
+		// TODO Auto-generated method stub
+		return this.boardDAO.getPostsCount(1, 0);
+	}
+
+	@Override
+	public int getLastdayPostsCount() throws Exception {
+		// TODO Auto-generated method stub
+		return this.boardDAO.getPostsCount(0, 0);
+	}
+
+	@Override
+	public int getBoardTodayCount(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return this.boardDAO.getPostsCount(0, id);
+	}
 
 
 

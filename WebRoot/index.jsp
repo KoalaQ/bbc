@@ -1,4 +1,6 @@
+<%@page import="com.aitiny.beans.IndexBean"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://www.aitiny.com/c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -8,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>郑州轻工业学院BBS</title>
+        <title>Aitiny BBS</title>
         <script type="text/javascript" src="js/jquery-1.2.6.pack.js"></script>
         <style type="text/css">
             #Lboard{    }
@@ -73,6 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <s:set name="yestNum" value="yestNum" scope="application"></s:set>
         <s:set name="todayNum" value="todayNum" scope="application" ></s:set>
         <s:set name="student" value="student" scope="session" ></s:set>
+
             <div id="banner">	
                 <div id="banner_bg"></div>  <!--标题背景-->
                 <div id="banner_info"></div> <!--标题-->
@@ -94,41 +97,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <h3 style="color:red;"> 帖子排行榜:</h3>
 
                 <ul>
-                <s:iterator value="hotPosts" id="row" status="st">
-                    <li><a href="post!viewDetail.action?pid=<s:property value="id" />"><s:property value="#row.name" />&nbsp; &nbsp;</a>【点击量<s:property value="#row.count" />】</li>
-                </s:iterator>
+                <c:forEach items="${index.hotPosts }" var="post">
+                    <li><a href="post!viewDetail.action?pid=${post.id }">${post.name }&nbsp; &nbsp;</a>【点击量${post.viewcount}】</li>
+                </c:forEach>
             </ul>
         </div>
         <div class="clear" ></div>
         <div id="Lboard">
-            <s:iterator value="rootBoard" id="row">
-                <div class="btitle"><s:property value="#row.name" /></div>
+            <c:forEach items="${index.rootBoard}" var="row">
+                <div class="btitle">${row.name}</div>
                 <div class="subBoard">
                     <ul>  
-                        <s:iterator value="#row.boards" id="sub">  
+                        <c:forEach items="${row.boards}" var="sub">  
                             <li>
-                                <a href="login!showAll.action?bid=<s:property value="#sub.id" /> ">
-                                    <s:if test="#sub.boardImg!=null">
-                                        <img width="60" height="60" src="<%=request.getContextPath()%>/upload/<s:property value="#sub.boardImg" />" class="bimg" ></img>
-                                    </s:if>
-                                    <s:else>
+                                <a href="login!showAll.action?bid=${sub.id}">
+                                    <c:if test="${sub.boardImg!=null}">
+                                        <img width="60" height="60" src="<%=request.getContextPath()%>/upload/${sub.boardImg}" class="bimg" ></img>
+                                    </c:if>
+                                   <c:if test="${sub.boardImg==null}">
                                         <img width="60" height="60" src="<%=request.getContextPath()%>/images/bimg.gif" class="bimg" ></img>
-                                    </s:else>
-                                    <h4><s:property value="#sub.name" /></h4>
+                                    </c:if>
+                                    <h4>${sub.name}</h4>
                                 </a>
                             </li>
-                        </s:iterator>
+                        </c:forEach>
                     </ul> 
                 </div> 
                 <div class="clear" ></div>
-            </s:iterator>
+            </c:forEach>
 
         </div> 
         <div class="btitle">友情链接</div>
         <div class="subBoard">
             <ul>
-                <li><a href="http://www.zzuli.edu.cn/">郑州轻工业学院</a></li>
-                <li><a href="http://www.tup.tsinghua.edu.cn/">清华大学出版社</a></li>
+                <li><a href="#">友情链接1</a></li>
+                <li><a href="#">友情链接2</a></li>
             </ul>
 
         </div>

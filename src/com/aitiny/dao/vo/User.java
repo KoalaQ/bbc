@@ -25,11 +25,11 @@ public class User implements Serializable {
 	}
 	
 	
-	public User(String email, String password, String nickName) {
+	public User(String email, String password, String uuid) {
 		super();
 		this.email = email;
 		this.password = password;
-		this.nickName = nickName;
+		this.uuid = uuid;
 	}
 
 

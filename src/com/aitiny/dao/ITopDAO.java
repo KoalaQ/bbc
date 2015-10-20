@@ -15,4 +15,5 @@ public interface ITopDAO extends IDAO<Integer, Top> {
  	 * @throws Exception
  	 */
  	public List<Top> findByTime(Date time)throws Exception;
+
 }

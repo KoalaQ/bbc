@@ -40,7 +40,7 @@ public interface IAdminService {
 		public boolean changePassword(Admin admin,String validateInfo)throws Exception;
 		//public boolean ChangeUserPassword() throws Exception;
 	
-		
+		public Admin findByEmail(String email)throws Exception;
 		
 		
 }

@@ -113,5 +113,18 @@ public class TopServiceImpl implements ITopService {
 		List<Post> viewMore =postDAO.afindByColumns(new String[]{}, new Object[]{0,topCounts}, "likes",EnumConstant .Order_type_DESC);	
 		return viewMore;
 	}
+
+	@Override
+	public List<Post> getTop() throws Exception {
+		// TODO Auto-generated method stub
+		List<Post> posts=new ArrayList<Post>();
+		List<Top> tops=topDAO.findAll();
+		for(Top top : tops){
+			posts.add(this.postDAO.findById(top.getPid()));
+		}
+		return posts;
+	}
+
+	
 	
 }

@@ -22,4 +22,9 @@ public interface IBoardService {
     
     //保存更新版块Board（name,description,boardImg）
     public boolean  updateBoard(Board board)throws Exception;
+    
+	
+	public int getTodayPostsCount()throws Exception;
+	public int getLastdayPostsCount()throws Exception;
+	public int getBoardTodayCount(int id)throws Exception;
 }

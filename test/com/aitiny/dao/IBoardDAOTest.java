@@ -100,5 +100,17 @@ public class IBoardDAOTest {
 			e.printStackTrace();
 		}
 	}
+	@Test
+	public void testgetPostCount() {
+		try {
+			System.out.println(this.boardDAO.getPostsCount(0, 0));
+			System.out.println(this.boardDAO.getPostsCount(1, 0));
+			System.out.println(this.boardDAO.getPostsCount(0, 1));
+			System.out.println(this.boardDAO.getPostsCount(1, 1));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

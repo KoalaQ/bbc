@@ -77,5 +77,27 @@ public class BoardDAOImpl extends ADAO<Integer, Board> implements IBoardDAO {
 		// TODO Auto-generated method stub
 		return this.agetPagingCount(column, keyWord);
 	}
-
+	@Override
+	public int getPostsCount(int type, int board) throws Exception {
+		// TODO Auto-generated method stub
+		if(board==0){
+			
+			if(type==1){
+				String sql="SELECT SUM(todayPosts) FROM board ";
+				return this.jdbcTemplate.queryForObject(sql	, Integer.class);
+			}else{
+				String sql="SELECT SUM(lastPosts) FROM board ";
+				return this.jdbcTemplate.queryForObject(sql	, Integer.class);
+			}
+		}else{
+			if(type==1){
+				String sql="SELECT SUM(todayPosts) FROM board WHERE id=? ";
+				return this.jdbcTemplate.queryForObject(sql	,new Object[]{board}, Integer.class);
+			}else{
+				String sql="SELECT SUM(lastPosts) FROM board WHERE id=? ";
+				return this.jdbcTemplate.queryForObject(sql	,new Object[]{board}, Integer.class);
+			}
+			
+		}
+	}
 }

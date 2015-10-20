@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
-<%@taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="c" uri="http://www.aitiny.com/c" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -42,9 +42,9 @@
         <!--<s:property value="@com.tools.StaticNumber@give()" />a-->
        
         <ul>
-            <li>昨日帖子： <%=application.getAttribute("yestNum")%>  今日帖子： <%=application.getAttribute("todayNum")%> &nbsp; 共：<s:property value="#application.total" />&nbsp;&nbsp;&nbsp;&nbsp; </li>
+            <li>昨日帖子： ${applicationScope.yestNum}  今日帖子：${applicationScope.todayNum}  &nbsp; 共：${applicationScope.total} &nbsp;&nbsp;&nbsp;&nbsp; </li>
             <li id="time"></li>
-             <script>
+             <script type="text/javascript">
                 function show() 
                 { 
                     now=new Date(); 
@@ -55,9 +55,9 @@
                     minutes=now.getMinutes(); 
                     seconds=now.getSeconds(); 
                     if(minutes<=9) 
-                        minutes="0"+minutes 
+                        minutes="0"+minutes; 
                     if(seconds<=9) 
-                        seconds="0"+seconds
+                        seconds="0"+seconds;
                     time.innerHTML=year+"年"+month+"月"+date+"日"+"  现在时间："+hours+":"+minutes+":"+seconds;
 
                     setTimeout("show()",1000); 

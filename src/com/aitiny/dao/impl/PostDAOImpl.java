@@ -78,7 +78,7 @@ public class PostDAOImpl extends ADAO<Integer, Post> implements IPostDAO {
 	@Override
 	public Integer getAllCount(String column, String keyWord) throws Exception {
 		// TODO Auto-generated method stub
-		throw new MethodNotRealize("方法未实现");
+		return  this.agetPagingCount(column, keyWord);
 	}
 
 	@Override

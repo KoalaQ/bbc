@@ -16,7 +16,7 @@ public class IValidateServiceTest {
 	IValidateService validateService=(IValidateService) ctx.getBean("validateService");
 	@Test
 	public void testUserSendCode() {
-		User user=new User("2539545665@qq.com", "fdsaf", "afds");
+		User user=new User("2500581267@qq.com", "fdsaf", "afds");
 		user.setId(1);
 		try {
 			this.validateService.userSendCode(user);

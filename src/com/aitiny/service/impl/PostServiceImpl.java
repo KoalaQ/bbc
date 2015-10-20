@@ -3,11 +3,11 @@ package com.aitiny.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.aitiny.dao.IBoardDAO;
 import com.aitiny.dao.IPostDAO;
 import com.aitiny.dao.IReplyDAO;
 import com.aitiny.dao.vo.Post;
@@ -23,6 +23,9 @@ public class PostServiceImpl extends AService<Post> implements IPostService {
 	@Autowired
 	@Qualifier("replyDAO")
 	private IReplyDAO replyDAO;
+	@Autowired
+	@Qualifier("boardDAO")
+	private IBoardDAO boardDAO;
 	@Override
 	protected void initDAO() {
 		// TODO Auto-generated method stub
@@ -31,7 +34,11 @@ public class PostServiceImpl extends AService<Post> implements IPostService {
 	@Override
 	public boolean postBlog(Post post) throws Exception {
 		// TODO Auto-generated method stub
-		return this.postDAO.doCreate(post);
+		if(this.postDAO.doCreate(post)){
+			boardDAO.doUpdate(post.getBid(), new String[]{"todayPosts"},new Object[]{boardDAO.findById(post.getBid()).getTodayPosts()+1} );
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -76,6 +83,11 @@ public class PostServiceImpl extends AService<Post> implements IPostService {
 	public boolean addReply(Reply reply) throws Exception {
 		// TODO Auto-generated method stub
 		return this.replyDAO.doCreate(reply);
+	}
+	@Override
+	public int postCount() throws Exception {
+		// TODO Auto-generated method stub
+		return this.postDAO.getAllCount("id", "");
 	}
 
 

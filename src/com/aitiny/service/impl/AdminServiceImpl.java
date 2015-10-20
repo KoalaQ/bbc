@@ -87,6 +87,11 @@ public class AdminServiceImpl extends AService<Admin> implements IAdminService {
 		}
 		return false;
 	}
+	@Override
+	public Admin findByEmail(String email) throws Exception {
+		// TODO Auto-generated method stub
+		return this.adminDAO.findByEmail(email);
+	}
 
 	
 

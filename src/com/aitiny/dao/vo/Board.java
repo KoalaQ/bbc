@@ -1,7 +1,9 @@
 package com.aitiny.dao.vo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class Board implements Serializable {
 		/**
@@ -15,9 +17,9 @@ public class Board implements Serializable {
 		private Integer aid;
 		private String boardImg;
 		private Integer postsCount;
-		private Date lastPosts;
+		private Integer lastPosts;
 		private Integer todayPosts;
-		
+		private List<Board> boards = new ArrayList<Board>();
 		public Board(String name, String description, Integer parentId,
 				Integer aid) {
 			super();
@@ -79,18 +81,25 @@ public class Board implements Serializable {
 		public void setPostsCount(Integer postsCount) {
 			this.postsCount = postsCount;
 		}
-		public Date getLastPosts() {
-			return lastPosts;
-		}
-		public void setLastPosts(Date lastPosts) {
-			this.lastPosts = lastPosts;
-		}
 		public Integer getTodayPosts() {
 			return todayPosts;
 		}
 		public void setTodayPosts(Integer todayPosts) {
 			this.todayPosts = todayPosts;
 		}
+		public Integer getLastPosts() {
+			return lastPosts;
+		}
+		public void setLastPosts(Integer lastPosts) {
+			this.lastPosts = lastPosts;
+		}
+		public List<Board> getBoards() {
+			return boards;
+		}
+		public void setBoards(List<Board> boards) {
+			this.boards = boards;
+		}
+	
 		
 		
 }

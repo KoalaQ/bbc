@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib  prefix="s" uri="/struts-tags" %>
+<%@taglib  prefix="c" uri="http://www.aitiny.com/c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,7 +38,7 @@
                       <img width="50" height="50" src="<%=request.getContextPath()%>/images/bimg.gif" class="bimg" ></img>
                   </s:else>
               <strong><s:property value="#sub.name" /></strong> 
-              <em> <a href="<%=request.getContextPath()%>/BoardManage/modifyBoardImg.jsp?bid=<s:property value="#sub.id" />">上传图标</a</em>
+              <em> <a href="<%=request.getContextPath()%>/BoardManage/modifyBoardImg.jsp?bid=${ #sub.id} />">上传图标</a></em>
               </a>
           </li>
      </s:iterator>

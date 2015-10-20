@@ -8,7 +8,14 @@ import com.aitiny.dao.vo.Post;
 import com.aitiny.dao.vo.Reply;
 
 public interface IPostService {
+	/**
+	 * 提交文章，会更新board的中对应的提交量。在每天12点会定时重置
+	 * @param post
+	 * @return
+	 * @throws Exception
+	 */
 		public boolean postBlog(Post post)throws Exception;
+		public int postCount()throws Exception;
 		/**
 		 * 修改文章
 		 * @param post (name,content,publishTime,files,summary,tag)
