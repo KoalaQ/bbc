@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.aitiny.dao.IUserDAO;
 import com.aitiny.dao.IValidateDAO;
 import com.aitiny.dao.vo.Admin;
 import com.aitiny.dao.vo.User;
@@ -20,6 +21,9 @@ public class ValidateServiceImpl implements IValidateService {
 	@Autowired
 	@Qualifier("validateDAO")
 	private IValidateDAO validateDAO;
+	@Autowired
+	@Qualifier("userDAO")
+	private IUserDAO userDAO;
 	@Autowired
 	@Qualifier("pushService")
 	private PushService pushService;
@@ -108,6 +112,12 @@ public class ValidateServiceImpl implements IValidateService {
 	 */
 	private String[] createUrl(){		
 		String uuid=StringUtil.getUUID();
-		return new String[]{"www.aitiny.com/user/check/"+uuid,uuid};
+		return new String[]{"www.aitiny.com/user/check.do?uuid="+uuid,uuid};
+	}
+
+	@Override
+	public boolean checkUserByUuid(String uuid) throws Exception {
+		// TODO Auto-generated method stub
+		return this.userDAO.doUpdate(validateDAO.findByUUID(uuid).getUid(), new String[]{"status"}, new Object[]{EnumConstant.Usre_status_verified});
 	}
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.aitiny.dao.vo.Admin;
 import com.aitiny.dao.vo.User;
+import com.aitiny.dao.vo.Validate;
 
 public interface IValidateService {
 		public boolean userSendCode(User user)throws Exception;
@@ -18,5 +19,6 @@ public interface IValidateService {
 		public boolean adminSendCode(Admin admin)throws Exception;
 		public boolean remove(Date time)throws Exception;
 		public boolean remove(int  id)throws Exception;
+		public boolean checkUserByUuid(String uuid) throws Exception;
 		
 }

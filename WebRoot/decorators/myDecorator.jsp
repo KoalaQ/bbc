@@ -8,7 +8,7 @@
     
 	<title><decorator:title default="装饰器页面"/></title>
 	<decorator:head/>
-	<link rel="stylesheet" type="text/css" href="../Style.css">
+	<link rel="stylesheet" type="text/css" href="../bbc/Style.css">
         <style type="text/css">
             *{ margin: 0; padding: 0; font-size: 13px;}
             #outer{ width: 980px; margin: 0 auto;  margin-left: 15%\9; }

@@ -15,6 +15,7 @@ import com.aitiny.dao.vo.User;
 import com.aitiny.service.ILogService;
 import com.aitiny.service.IPostService;
 import com.aitiny.service.IUserService;
+import com.aitiny.service.IValidateService;
 /**
  * @author koala
  *
@@ -30,6 +31,9 @@ public class ServiceAspect {
 	@Autowired
 	@Qualifier("userService")
 	private IUserService userService;
+	@Autowired
+	@Qualifier("validateService")
+	private IValidateService validateService;
 	@AfterReturning(value="execution(*  com.aitiny.service.impl.AdminServiceImpl.insert(..))",returning="retVal")	
 	public void loginsert(JoinPoint jp,boolean retVal){
 		if(retVal){
@@ -103,6 +107,7 @@ public class ServiceAspect {
 				e.printStackTrace();
 			}
 	}
+	//有用户注册，记录到log同时发送验证邮件
 	@AfterReturning(value="execution(*  com.aitiny.service.impl.UserServiceImpl.register(..))",returning="retVal")	
 	public void register(JoinPoint jp,boolean retVal){
 		if(retVal){
@@ -116,6 +121,8 @@ public class ServiceAspect {
 			}
 			Log log=new Log(null, ruser.getId(), "用户注册："+user.getNickName(), "用户注册"); 
 			try {
+				//发送验证邮件
+				validateService.userSendUrl(ruser);
 				logService.insert(log);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
