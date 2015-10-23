@@ -18,14 +18,14 @@ public class Post implements Serializable {
 	private String files;
 	private  String summary;
 	private String tag;
-	
+	private String author;
 	public Post() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public Post(Integer bid, Integer uid, Integer aid, String name,
 			String content, Date publishTime, String files, String summary,
-			String tag) {
+			String tag,String author) {
 		super();
 		this.bid = bid;
 		this.uid = uid;
@@ -36,6 +36,27 @@ public class Post implements Serializable {
 		this.files = files;
 		this.summary = summary;
 		this.tag = tag;
+		this.author=author;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", bid=" + bid + ", uid=" + uid + ", aid="
+				+ aid + ", name=" + name + ", content=" + content
+				+ ", publishTime=" + publishTime + ", viewcount=" + viewcount
+				+ ", likes=" + likes + ", status=" + status + ", files="
+				+ files + ", summary=" + summary + ", tag=" + tag + ", author="
+				+ author + "]";
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
 	public String getTag() {
@@ -49,16 +70,6 @@ public class Post implements Serializable {
 	}
 	public void setAid(Integer aid) {
 		this.aid = aid;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Post [id=" + id + ", bid=" + bid + ", uid=" + uid + ", aid="
-				+ aid + ", name=" + name + ", content=" + content
-				+ ", publishTime=" + publishTime + ", viewcount=" + viewcount
-				+ ", likes=" + likes + ", status=" + status + ", files=" + files
-				+ ", summary=" + summary + ", tag=" + tag + "]";
 	}
 
 	public Integer getId() {

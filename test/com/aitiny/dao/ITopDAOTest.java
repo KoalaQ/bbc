@@ -72,7 +72,6 @@ public class ITopDAOTest {
 
 	@Test
 	public void testGetAllCount() {
-		fail("Not yet implemented");
 	}
 
 }

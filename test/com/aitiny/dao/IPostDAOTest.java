@@ -15,7 +15,7 @@ ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:application
 IPostDAO postDAO=(IPostDAO) ctx.getBean("postDAO");
 	@Test
 	public void testDoCreate() {
-		Post post=new Post(1, 3, null, "test", "testContent", new Date(), "testFiles", "testSummary", "testTag");
+		Post post=new Post(1, 3, null, "test", "testContent", new Date(), "testFiles", "testSummary", "testTag","pp");
 		try {
 			System.out.println(this.postDAO.doCreate(post));
 		} catch (Exception e) {

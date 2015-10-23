@@ -15,6 +15,13 @@ public interface IPostService {
 	 * @throws Exception
 	 */
 		public boolean postBlog(Post post)throws Exception;
+		/**
+		 * 
+		 * @param post(id,name,content,publishTime,files,summary,tag)
+		 * @return
+		 * @throws Exception
+		 */
+		public boolean updateBlog(Post post)throws Exception;
 		public int postCount()throws Exception;
 		/**
 		 * 修改文章
@@ -49,7 +56,7 @@ public interface IPostService {
 		/**
 		 * 
 		 * @param column
-		 * @param keyWord
+		 * @param keyWord 精确等于查询
 		 * @param currentPage
 		 * @param lineSize
 		 * @param orderColumn
@@ -61,7 +68,21 @@ public interface IPostService {
 		 */
 		public Map<String, Object> listPost(String column, String keyWord,int currentPage,int lineSize,
 				String orderColumn,int orderType,int status)throws Exception;
-
+		/**
+		 * 
+		 * @param column
+		 * @param keyWord 模糊查询
+		 * @param currentPage
+		 * @param lineSize
+		 * @param orderColumn
+		 * @param orderType
+		 * @return该方法会返回两类数据：List<Post>集合，Integer统计结果，所以使用Map保存，Map存放规则
+	 *         <li> key=all：保存的是findAll()方法返回的List集合
+	 *         <li> key=count: 保存的是getAllCount()方法的Integer数据
+		 * @throws Exception
+		 */
+		public Map<String, Object> listPostLike(String column, String keyWord,int currentPage,int lineSize,
+				String orderColumn,int orderType,int status)throws Exception;
 		/**
 		 * 添加评论
 		 * @param reply(pid,uid,type,parentid,content,time,rootid)

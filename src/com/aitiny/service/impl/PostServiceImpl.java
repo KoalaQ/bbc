@@ -42,6 +42,11 @@ public class PostServiceImpl extends AService<Post> implements IPostService {
 	}
 
 	@Override
+	public boolean updateBlog(Post post) throws Exception {
+		// TODO Auto-generated method stub
+		return postDAO.doUpdate(post);
+	}
+	@Override
 	public boolean modifyBlog(Post post) throws Exception {
 		// TODO Auto-generated method stub
 		return this.postDAO.doUpdate(post);
@@ -74,7 +79,17 @@ public class PostServiceImpl extends AService<Post> implements IPostService {
 			throws Exception {
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("all", this.postDAO.findAllAvailable(column, keyWord, currentPage, lineSize, orderColumn, orderType, status));
-		map.put("count", this.postDAO.getAllCountAvailable(orderColumn, keyWord, status));
+		map.put("count", this.postDAO.getAllCountAvailable(column, keyWord, status));
+		
+		return map;
+	}
+	@Override
+	public Map<String, Object> listPostLike(String column, String keyWord,
+			int currentPage, int lineSize, String orderColumn, int orderType,int status)
+			throws Exception {
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("all", this.postDAO.findAllAvailableLike(column, keyWord, currentPage, lineSize, orderColumn, orderType, status));
+		map.put("count", this.postDAO.getAllCountAvailableLike(column, keyWord, status));
 		
 		return map;
 	}

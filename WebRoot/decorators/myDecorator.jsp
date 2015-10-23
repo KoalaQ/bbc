@@ -2,16 +2,20 @@
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
 <%@taglib prefix="c" uri="http://www.aitiny.com/c" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
     
 	<title><decorator:title default="装饰器页面"/></title>
 	<decorator:head/>
-	<link rel="stylesheet" type="text/css" href="../bbc/Style.css">
+	<link rel="stylesheet" type="text/css" href="<%=path %>/Style.css">
         <style type="text/css">
             *{ margin: 0; padding: 0; font-size: 13px;}
-            #outer{ width: 980px; margin: 0 auto;  margin-left: 15%\9; }
+            #outer{ width: 1024px; margin: 0 auto;  margin-left: 15%\9; }
             #main{ border: 1px solid #A6CBE7; border-top: none; min-height: 500px; height: auto; overflow:visible; padding-top: 15px; }
             #searchBar{height:50px; margin-top: 5px; border:1px solid #D0E3F4; border-top:none; background-color: #F4F9FF;  }
             #searchKey{ border:1px solid sliver; height:25px; line-height:30px; width:200px;}
@@ -36,7 +40,7 @@
     <div id="searchBar"  >
         <form action="post!searchPost.action" id="searchForm" style="float:left;" >
                 <span> 
-                    <img style="position:relative; top:10px;" src="<%=request.getContextPath()%>/images/search_1.png" />  <input id="searchKey" type="text" name="post.name"  placeholder="搜索其实很简单" ></input><input type="submit" value="搜索" style=" border: none; background: url(images/search_btn.png) no-repeat; width: 45px; text-align: left; text-indent: 10px;  height: 25px; margin-left: 15px; line-height: 30px; position: relative; top:0px; cursor: pointer; "  onclick="return checkForm()" ></input>
+                    <img style="position:relative; top:10px;" src="<%=request.getContextPath()%>/images/search_1.png" />  <input id="searchKey" type="text" name="post.name"  placeholder="搜索其实很简单" ></input><input type="submit" value="搜索" style=" border: none; background: url(<%=request.getContextPath()%>/images/search_btn.png) no-repeat; width: 45px; text-align: left; text-indent: 10px;  height: 25px; margin-left: 15px; line-height: 30px; position: relative; top:0px; cursor: pointer; "  onclick="return checkForm()" ></input>
                 </span>
             </form>
         <!--<s:property value="@com.tools.StaticNumber@give()" />a-->

@@ -1,7 +1,11 @@
 package com.aitiny.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.aitiny.dao.ADAO;
@@ -58,6 +62,24 @@ public class BoardDAOImpl extends ADAO<Integer, Board> implements IBoardDAO {
 	public List<Board> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return this.afindAll();
+	}
+	@Override
+	public List<Board> findAllChilds() throws Exception {
+		// TODO Auto-generated method stub
+		String sql="SELECT * FROM board WHERE parentId!=0";
+	
+	//	System.out.println(sql+","+values[0]+values[1]+values[2]);
+		RowMapper<Board> rowMapper=new BeanPropertyRowMapper<>(cls);
+		List<Board> v=null;
+		try {
+			v=jdbcTemplate.query(sql, rowMapper);
+		//	System.out.println(jdbcTemplate.query(sql, rowMapper,values));
+		} catch (EmptyResultDataAccessException e) {
+			e.printStackTrace();
+			return new ArrayList<Board>();
+		}
+		//System.out.println(v.get(0));
+		return v;
 	}
 	@Override
 	public List<Board> findAll(String column, String keyWord,

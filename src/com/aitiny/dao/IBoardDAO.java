@@ -1,5 +1,7 @@
 package com.aitiny.dao;
 
+import java.util.List;
+
 import com.aitiny.dao.vo.Board;
 
 public interface IBoardDAO extends IDAO<Integer, Board> {
@@ -11,4 +13,5 @@ public interface IBoardDAO extends IDAO<Integer, Board> {
  	 * @throws Exception
  	 */
  	public int getPostsCount(int type,int board)throws Exception;
+ 	public List<Board> findAllChilds() throws Exception ;
 }

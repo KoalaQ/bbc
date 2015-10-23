@@ -1,17 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://www.aitiny.com/c" %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <style type="text/css">
-            ul { list-style-type: none;}
-            #po{}
-        </style>
 
-    </head>
-    <body>
+ 
+
         <div id="wrap">
             <div id="Top"> 
                 <div id="logo">
@@ -41,7 +32,7 @@
             <div id="s_head">
                 <div id="menu">
                     <ul id="menu_left">
-                        <li id="m_01"><a id="a_01" href="<%=request.getContextPath()%>/index.action">首&nbsp;页</a></li>
+                        <li id="m_01"><a id="a_01" href="<%=request.getContextPath()%>/index.do">首&nbsp;页</a></li>
                         <li class="menu_ge"></li>
                         <li id="m_03"><a href="post!viewPostsByUser.action">我的帖子</a></li>
                         <c:if test="${sessionScope.user!=null}">
@@ -69,6 +60,3 @@
                 </div>
             </div>
         </div>
-
-    </body>
-</html>

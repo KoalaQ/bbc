@@ -40,7 +40,11 @@ public class BoardServiceImpl implements IBoardService {
 		// TODO Auto-generated method stub
 		return this.boardDAO.afindByColumns(new String[]{"parentID"}, new Object[]{parentId,0,100}, "id", EnumConstant.Order_type_ASEC);
 	}
-
+	@Override
+	public List<Board> loadChildBoards()throws Exception {
+		// TODO Auto-generated method stub
+		return this.boardDAO.findAllChilds();
+	}
 	@Override
 	public List<Board> loadAllBoards()throws Exception {
 		// TODO Auto-generated method stub
@@ -81,6 +85,8 @@ public class BoardServiceImpl implements IBoardService {
 		// TODO Auto-generated method stub
 		return this.boardDAO.getPostsCount(0, id);
 	}
+
+
 
 
 

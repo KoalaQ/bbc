@@ -16,18 +16,20 @@ public class IPostServiceTest {
 	IPostService postService=(IPostService) ctx.getBean("postService");
 	@Test
 	public void testPostBlog() {
-		Post post=new Post(1, 1, 1, "test", "ceshi", new Date(), "", "ceshi", "ceshi");
-		try {
-			System.out.println(this.postService.postBlog(post));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for (int i = 0; i < 30; i++) {
+			Post post=new Post(1, 1, 1, "test"+i, "ceshi", new Date(), "", "ceshi", "ceshi","fsaf");
+			try {
+				System.out.println(this.postService.postBlog(post));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
 	@Test
 	public void testModifyBlog() {
-		Post post=new Post(1, 1, 1, "test3", "cesh4", new Date(), "", "ceggrs2hi", "grces2grhi");
+		Post post=new Post(1, 1, 1, "test3", "cesh4", new Date(), "", "ceggrs2hi", "grces2grhi","fds");
 		post.setId(1);
 		try {
 			System.out.println(this.postService.modifyBlog(post));

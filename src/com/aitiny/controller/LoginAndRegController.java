@@ -14,14 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.aitiny.dao.vo.Admin;
 import com.aitiny.dao.vo.User;
-import com.aitiny.dao.vo.Validate;
 import com.aitiny.service.IAdminService;
 import com.aitiny.service.IUserService;
 import com.aitiny.service.IValidateService;
 import com.aitiny.util.EnumConstant;
 import com.aitiny.util.StringUtil;
 
-@Controller("/")
+@Controller
 public class LoginAndRegController {
 	
 	

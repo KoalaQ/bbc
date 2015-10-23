@@ -138,7 +138,7 @@ public class UserServiceImpl extends AService<User> implements IUserService {
 	@Override
 	public User findUser(int id) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return this.userDAO.findById(id);
 	}
 
 	@Override

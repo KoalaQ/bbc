@@ -26,8 +26,8 @@ public class PostDAOImpl extends ADAO<Integer, Post> implements IPostDAO {
 	@Override
 	public boolean doCreate(Post vo) throws Exception {
 		// TODO Auto-generated method stub
-		String sql="INSERT INTO post(bid,uid,aid,name,content,publishTime,files,summary,tag) VALUES(?,?,?,?,?,?,?,?,?)";
-		Object[] params=new Object[]{vo.getBid(),vo.getUid(),vo.getAid(),vo.getName(),vo.getContent(),vo.getPublishTime(),vo.getFiles(),vo.getSummary(),vo.getTag()};
+		String sql="INSERT INTO post(bid,uid,aid,name,content,publishTime,files,summary,tag,author) VALUES(?,?,?,?,?,?,?,?,?,?)";
+		Object[] params=new Object[]{vo.getBid(),vo.getUid(),vo.getAid(),vo.getName(),vo.getContent(),vo.getPublishTime(),vo.getFiles(),vo.getSummary(),vo.getTag(),vo.getAuthor()};
 		if(this.jdbcTemplate.update(sql, params)>0){
 			return true;
 		}
@@ -124,6 +124,30 @@ public class PostDAOImpl extends ADAO<Integer, Post> implements IPostDAO {
 		}
 		//此处如果将orderColumn放入可变参数？号中，则升降序失效。应该是预处理机制问题，比如column不能在参数中，不然报错
 		String sql="SELECT * FROM "
+				+ " (Select * FROM "+table+" WHERE  status="+status+" AND "+table+"."+column+" =  ?  ORDER BY   "+orderColumn+" "+type+  " )"
+				+ "  "+keyName+" LIMIT ?,?";
+		//System.out.println(sql);
+		RowMapper<Post> rowMapper=new BeanPropertyRowMapper<>(cls);
+		Object[] params=new Object[]{keyWord,(currentPage-1)*lineSize,lineSize};
+	//	System.out.println(params[0]+","+params[0]+","+params[0]);
+		List<Post> posts=null;
+		try {
+			posts=jdbcTemplate.query(sql, rowMapper,params);
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<Post>();
+		}
+		return posts;
+	}
+	@Override
+	public List<Post> findAllAvailableLike(String column, String keyWord,
+			Integer currentPage, Integer lineSize, String orderColumn,
+			Integer orderType, int status) throws Exception {
+		String type="";
+		if(orderType==EnumConstant.Order_type_DESC){
+			type="DESC";
+		}
+		//此处如果将orderColumn放入可变参数？号中，则升降序失效。应该是预处理机制问题，比如column不能在参数中，不然报错
+		String sql="SELECT * FROM "
 				+ " (Select * FROM "+table+" WHERE  status="+status+" AND "+table+"."+column+" LIKE  ?  ORDER BY   "+orderColumn+" "+type+  " )"
 				+ "  "+keyName+" LIMIT ?,?";
 		//System.out.println(sql);
@@ -141,6 +165,16 @@ public class PostDAOImpl extends ADAO<Integer, Post> implements IPostDAO {
 
 	@Override
 	public Integer getAllCountAvailable(String column, String keyWord,
+			int status) throws Exception {
+		String sql="SELECT COUNT(*) FROM "+ table
+				+ "  WHERE status="+status+" AND "+column+" =  ?  ";
+		Object[] params=new Object[]{keyWord};
+	//	System.out.println(params[0]+","+params[0]+","+params[0]);
+		Integer count=jdbcTemplate.queryForObject(sql, params, Integer.class);
+		return count;
+	}
+	@Override
+	public Integer getAllCountAvailableLike(String column, String keyWord,
 			int status) throws Exception {
 		String sql="SELECT COUNT(*) FROM "+ table
 				+ "  WHERE status="+status+" AND "+column+" LIKE  ?  ";

@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                 <ul>
                 <c:forEach items="${index.hotPosts }" var="post">
-                    <li><a href="post!viewDetail.action?pid=${post.id }">${post.name }&nbsp; &nbsp;</a>【点击量${post.viewcount}】</li>
+                    <li><a href="postDetail.do?pid=${post.id }">${post.name }&nbsp; &nbsp;</a>【点击量${post.viewcount}】</li>
                 </c:forEach>
             </ul>
         </div>
@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul>  
                         <c:forEach items="${row.boards}" var="sub">  
                             <li>
-                                <a href="login!showAll.action?bid=${sub.id}">
+                                <a href="blog.do?bid=${sub.id}">
                                     <c:if test="${sub.boardImg!=null}">
                                         <img width="60" height="60" src="<%=request.getContextPath()%>/upload/${sub.boardImg}" class="bimg" ></img>
                                     </c:if>
