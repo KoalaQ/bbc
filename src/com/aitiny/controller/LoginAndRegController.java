@@ -55,7 +55,7 @@ public class LoginAndRegController {
 		}else{
 			User user=new User();
 			user.setEmail(email);
-			user.setNickName(nickName);
+			user.setNickName(nickName.trim());
 			user.setPassword(password);
 			try {
 				if(userService.register(user)){
@@ -262,5 +262,12 @@ public class LoginAndRegController {
 			mav.addObject("error", 10);
 		}
 		return mav;
+	}
+	@RequestMapping("logout.do")
+	public String logout(HttpServletRequest request){
+		request.getSession().invalidate();
+		
+		return "login.jsp";
+		
 	}
 }

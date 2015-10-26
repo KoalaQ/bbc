@@ -2,6 +2,7 @@ package com.aitiny.service;
 
 
 
+import java.util.List;
 import java.util.Map;
 
 import com.aitiny.dao.vo.Post;
@@ -98,6 +99,6 @@ public interface IPostService {
 		 * 3：留到实现的时候在写
 		 */
 		
-		//public void findReply()throws Exception;
+		public List<Reply> findReply(int pid)throws Exception;
 		//public Map<String, Object> search(String keyWord,int currentPage,int lineSize)throws Exception;
 }

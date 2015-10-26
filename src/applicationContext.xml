@@ -57,10 +57,10 @@
 			 		<tx:method name="*" />
 			 	</tx:attributes>
 			 </tx:advice>
-			 <!-- AOP事务织入
+			 <!-- AOP事务织入-->
 			 <aop:config>
 			 		<aop:pointcut expression="execution(* com.aitiny.service.*Service.*(..))" id="serviceMethod"/>
 			 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
-			 </aop:config> -->
+			 </aop:config> 
 
 </beans>

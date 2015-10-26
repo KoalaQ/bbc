@@ -1,7 +1,11 @@
 package com.aitiny.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.aitiny.dao.ADAO;
@@ -77,6 +81,21 @@ public class ReplyDAOImpl extends ADAO<Integer, Reply> implements IReplyDAO {
 	public Integer getAllCount(String column, String keyWord) throws Exception {
 		// TODO Auto-generated method stub
 		return this.agetPagingCount(column, keyWord);
+	}
+	@Override
+	public List<Reply> findAllByPid(Integer pid) throws Exception {
+		// TODO Auto-generated method stub
+		String sql="SELECT * FROM reply WHERE pid="+pid;
+		RowMapper<Reply> rowMapper=new BeanPropertyRowMapper<>(Reply.class);
+		List<Reply> replys=null;
+		try {
+			replys=jdbcTemplate.query(sql, rowMapper);
+		//	System.out.println(jdbcTemplate.query(sql, rowMapper,values));
+		} catch (EmptyResultDataAccessException e) {
+			e.printStackTrace();
+			return new ArrayList<Reply>();
+		}
+		return replys;
 	}
 
 

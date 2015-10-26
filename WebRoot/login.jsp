@@ -105,6 +105,8 @@
        <span style="color:red"> <c:if test="${param.error==5}">用户被锁定！</c:if></span>
        <span style="color:red"> <c:if test="${param.error==6 || param.error==7}">用户名或密码错误！</c:if></span>
         <span style="color:red"> <c:if test="${param.error==10}">验证码错误！</c:if></span>
+        
+         <span style="color:red"> <c:if test="${param.error==9}">更改密码成功！</c:if></span>
          <span style="color:red"> <c:if test="${param.error==1}">邮箱验证成功，可以登录！</c:if></span>
         <div id="tabs">
           <ul>
@@ -133,7 +135,9 @@
                  		</tr>
                  		<tr>
                  			<td><input type="submit"  value="" class="loginBtn"/></td>
-                 			<td>没有账号，<a href="register.jsp" style="color : blue">点击注册</a></td>
+                 			<td>没有账号，<a href="register.jsp" style="color : blue">点击注册</a>&nbsp;&nbsp;&nbsp;
+                 			<a href="user/changePasswordPre.jsp" style="color : blue;font-size: 5px">忘记密码？</a>
+                 			</td>
                  		</tr>
                  	</table>
             </form>

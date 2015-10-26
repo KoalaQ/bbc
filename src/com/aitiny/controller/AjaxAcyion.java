@@ -16,7 +16,7 @@ import org.springframework.stereotype.Controller;
 
 import com.aitiny.service.IUserService;
 
-@WebServlet(name="ajax",urlPatterns="/AjaxAcyion.action")
+
 public class AjaxAcyion extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)

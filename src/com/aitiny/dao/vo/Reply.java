@@ -19,6 +19,7 @@ public class Reply implements Serializable {
 	private Date time;
 	private Integer counts;
 	private Integer rootid;//评论根节点，如果是文章评论则为pid.。如果是子评论则为此评论文章id
+	private User user;
 	public Reply() {
 		// TODO Auto-generated constructor stub
 	}
@@ -40,12 +41,15 @@ public class Reply implements Serializable {
 
 
 
+
+
+
 	@Override
 	public String toString() {
 		return "Reply [id=" + id + ", pid=" + pid + ", uid=" + uid + ", type="
 				+ type + ", parentid=" + parentid + ", nextid=" + nextid
 				+ ", content=" + content + ", time=" + time + ", counts="
-				+ counts + ", rootid=" + rootid + "]";
+				+ counts + ", rootid=" + rootid + ", user=" + user + "]";
 	}
 
 
@@ -116,6 +120,16 @@ public class Reply implements Serializable {
 
 	public void setCounts(Integer counts) {
 		this.counts = counts;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

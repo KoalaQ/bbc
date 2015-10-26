@@ -1,6 +1,7 @@
 package com.aitiny.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.aitiny.dao.IBoardDAO;
 import com.aitiny.dao.IPostDAO;
 import com.aitiny.dao.IReplyDAO;
+import com.aitiny.dao.IUserDAO;
 import com.aitiny.dao.vo.Post;
 import com.aitiny.dao.vo.Reply;
 import com.aitiny.service.AService;
@@ -26,6 +28,9 @@ public class PostServiceImpl extends AService<Post> implements IPostService {
 	@Autowired
 	@Qualifier("boardDAO")
 	private IBoardDAO boardDAO;
+	@Autowired
+	@Qualifier("userDAO")
+	private IUserDAO userDAO;
 	@Override
 	protected void initDAO() {
 		// TODO Auto-generated method stub
@@ -70,7 +75,11 @@ public class PostServiceImpl extends AService<Post> implements IPostService {
 	@Override
 	public Post getBlog(int id) throws Exception {
 		// TODO Auto-generated method stub
-		return this.postDAO.findById(id);
+		Post post=this.postDAO.findById(id);
+		if(post!=null){
+			postDAO.doUpdate(id, new String[]{"viewcount"} ,new Object[]{post.getViewcount()+1});
+		}
+		return post;
 	}
 
 	@Override
@@ -103,6 +112,15 @@ public class PostServiceImpl extends AService<Post> implements IPostService {
 	public int postCount() throws Exception {
 		// TODO Auto-generated method stub
 		return this.postDAO.getAllCount("id", "");
+	}
+	@Override
+	public List<Reply> findReply(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		List<Reply> replys=replyDAO.findAllByPid(pid);
+		for(Reply reply : replys){
+			reply.setUser(userDAO.findById(reply.getUid()));
+		}
+		return replys;
 	}
 
 

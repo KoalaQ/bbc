@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.aitiny.dao.IUserDAO;
 import com.aitiny.dao.IValidateDAO;
@@ -68,6 +69,25 @@ public class ValidateServiceImpl implements IValidateService {
 		}
 		return false;
 	}
+	@Override
+	public boolean userSendValiPasswordUrl(User user) throws Exception {
+		// TODO Auto-generated method stub
+		
+	
+		pushService.setPushSupport(mailSupport);
+		String[] url=this.createUrl2();
+		Validate validate=new Validate(url[1], EnumConstant.Validate_type_url, url[0], user.getId(), null, new Date(),null);
+		if(pushService.pushMessage(user.getEmail(), "点击链接更改密码：<a href='"+url[0]+"'>"+url[0]+"<a/>。用于更改密码，有效时间为30分钟。打死都不能告诉别人。<a href='www.aitiny.com'>【www.aitiny.com】 <a/>")){	
+			if(validateDAO.findByUidAndTpye(user.getId(), EnumConstant.Validate_type_url)==null){
+				return	validateDAO.doCreate(validate);		 
+			}else{
+				validateDAO.doRemove(validateDAO.findByUidAndTpye(user.getId(), EnumConstant.Validate_type_url).getId());//先清除以前的验证码
+				return	validateDAO.doCreate(validate);
+			}	 
+		}
+		return false;
+	}
+
 
 	@Override
 	public boolean adminSendCode(Admin admin) throws Exception {
@@ -114,10 +134,20 @@ public class ValidateServiceImpl implements IValidateService {
 		String uuid=StringUtil.getUUID();
 		return new String[]{"www.aitiny.com/user/check.do?uuid="+uuid,uuid};
 	}
+	private String[] createUrl2(){		
+		String uuid=StringUtil.getUUID();
+		return new String[]{"www.aitiny.com/user/changePasswordPre.do?uuid="+uuid,uuid};
+	}
 
 	@Override
 	public boolean checkUserByUuid(String uuid) throws Exception {
 		// TODO Auto-generated method stub
 		return this.userDAO.doUpdate(validateDAO.findByUUID(uuid).getUid(), new String[]{"status"}, new Object[]{EnumConstant.Usre_status_verified});
+	}
+	@Override
+	public Validate getByUuid(String uuid) throws Exception {
+		// TODO Auto-generated method stub
+		
+		return this.validateDAO.findByUUID(uuid);
 	}
 }

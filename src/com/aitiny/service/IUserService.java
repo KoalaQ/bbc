@@ -44,6 +44,14 @@ public interface IUserService {
 	 */
 	public boolean changePassword(User user,String valiCode)throws Exception;
 	/**
+	 * 
+	 * @param user  (id,password)
+	 * @param valiCode
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean changePassword(User user)throws Exception;
+	/**
 	 * 更新用户信息
 	 * @param user 更新的属性有，nickName,photoPath,theme
 	 * @return

@@ -1,7 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://www.aitiny.com/c" %>
 
- 
 
         <div id="wrap">
             <div id="Top"> 
@@ -34,12 +33,12 @@
                     <ul id="menu_left">
                         <li id="m_01"><a id="a_01" href="<%=request.getContextPath()%>/index.do">首&nbsp;页</a></li>
                         <li class="menu_ge"></li>
-                        <li id="m_03"><a href="post!viewPostsByUser.action">我的帖子</a></li>
+                        <li id="m_03"><a href="/bbc/mypost.do">我的帖子</a></li>
                         <c:if test="${sessionScope.user!=null}">
                             <li class="menu_ge"></li>
-                        <li id="m_04"><a href="student!personalStuInfo.action">个人资料</a></li>
+                        <li id="m_04"><a href="/bbc/user/updateInfo.jsp">个人资料</a></li>
                         <li class="menu_ge"></li>
-                         <li id="m_07"><a href="<%=request.getContextPath()%>/PersonalInfo/StuPswModify.jsp">修改密码</a></li>
+                         <li id="m_07"><a href="<%=request.getContextPath()%>/user/changePasswordPre.jsp">修改密码</a></li>
                         </c:if>
                         <c:if test="${sessionScope.admin!=null}">
                             <li class="menu_ge"></li>
@@ -55,7 +54,7 @@
                           <li class="menu_ge"></li>
                         <%}%>
                       
-                        <li id="m_08"><a href="login!exit.action">退出</a></li>
+                        <li id="m_08"><a href="<%=request.getContextPath()%>/logout.do">退出</a></li>
                     </ul>
                 </div>
             </div>

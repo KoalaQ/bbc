@@ -20,5 +20,7 @@ public interface IValidateService {
 		public boolean remove(Date time)throws Exception;
 		public boolean remove(int  id)throws Exception;
 		public boolean checkUserByUuid(String uuid) throws Exception;
+		public boolean userSendValiPasswordUrl(User user) throws Exception;
+		public Validate getByUuid(String uuid) throws Exception ;
 		
 }

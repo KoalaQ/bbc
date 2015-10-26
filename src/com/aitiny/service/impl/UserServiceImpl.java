@@ -111,7 +111,16 @@ public class UserServiceImpl extends AService<User> implements IUserService {
 		}
 		return false;
 	}
-
+	@Override
+	public boolean changePassword(User user) throws Exception {
+		// TODO Auto-generated method stub
+				
+			if(this.userDAO.doUpdate(user.getId(), new String[]{"password"}, new Object[]{user.getPassword()})){
+				validateDAO.doRemove(validateDAO.findByUidAndTpye(user.getId(), EnumConstant.Validate_type_url).getId());
+				return true;
+		}
+		return false;
+	}
 	@Override
 	public boolean updateInfo(User user) throws Exception {
 		// TODO Auto-generated method stub

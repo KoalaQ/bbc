@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>郑州轻工业学院论坛</title>
+        <title>论坛</title>
          <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/pagination.css" />
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/Mainbbs.css" />
   
@@ -74,7 +74,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- 帖子列表 -->
             <table>
                 <tr style="background-color:#E7EFEF;">
-                    <th style="width:10px;"></th><th style="text-align:left;">帖子标题</th>
+                    <th style="width:10px;"></th>
+                    <th style="text-align:left;">帖子标题</th>
                     <th>作者</th>
                     <th>点击 / 收藏</th>
                     <th>发布时间</th>
@@ -86,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <tr>
                         <td><img src="<%=request.getContextPath()%>/images/folder_new.gif" style="display: inline-block; margin:4px 5px 0px 0px;" /></td>
                         <td style="text-align: left;" ><a href="postDetail.do?pid=${post.id}">${post.name}</a></td>
-                        <td>${post.author}</td>
+                        <td><a href="userinfo.do?uid=${post.uid }">${post.author}</a></td>
                         <td>${post.viewcount} / ${post.likes}</td>
                         
                         <td>

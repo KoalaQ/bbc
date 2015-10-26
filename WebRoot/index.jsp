@@ -71,10 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     </head>
     <body>
-        <s:set name="total" value="total" scope="application"></s:set>
-        <s:set name="yestNum" value="yestNum" scope="application"></s:set>
-        <s:set name="todayNum" value="todayNum" scope="application" ></s:set>
-        <s:set name="student" value="student" scope="session" ></s:set>
+   
 
             <div id="banner">	
                 <div id="banner_bg"></div>  <!--标题背景-->
